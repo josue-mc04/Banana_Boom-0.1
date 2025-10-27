@@ -14,14 +14,23 @@ public class PlayerControler : MonoBehaviour
     private Rigidbody rb;
     private bool canJump = true;
 
+    [Header("Rotacion de camara pal player dx")]
+    public Transform camara;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
     private void Update()
     {
+        //movimiento del player
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
         transform.Translate(move * speed * Time.deltaTime);
+
+        //rotacion de la camara
+        Vector3 rotacionCamara = camara.rotation.eulerAngles;
+        transform.rotation = Quaternion.Euler(0f, rotacionCamara.y, 0f);
+
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -37,7 +46,7 @@ public class PlayerControler : MonoBehaviour
             canJump = false;
         }
     }
-
+  
     private void OnCollisionEnter(Collision collision)
     {
         canJump = true;
