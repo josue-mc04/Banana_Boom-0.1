@@ -1098,22 +1098,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 90fe0b53-356a-42d5-92d5-fc57b38ebe3f
     m_ActionName: 'Game/Jump[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1425900764}
-        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
-        m_MethodName: OnLook
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: d42f9617-be7c-4aa0-b8b2-b6617d9c57d4
-    m_ActionName: 'Game/Look[/Mouse/delta]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -3465,6 +3449,10 @@ PrefabInstance:
     - target: {fileID: 3731781394105185073, guid: c7ab29d9988dd8646b717e9e62792dee, type: 3}
       propertyPath: m_Name
       value: Cocos
+      objectReference: {fileID: 0}
+    - target: {fileID: 3731781394105185073, guid: c7ab29d9988dd8646b717e9e62792dee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
