@@ -1,7 +1,4 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerControler : MonoBehaviour
 {
@@ -12,43 +9,54 @@ public class PlayerControler : MonoBehaviour
     [Header("Jump Player")]
     [SerializeField] private int jumpForce;
     private Rigidbody rb;
-    private bool canJump = true;
+    private bool canJump;
+
+    [Header("Raycast")]
+    [SerializeField] private float distance;
+    [SerializeField] private LayerMask layer;
 
     [Header("Rotacion de camara pal player dx")]
     public Transform camara;
-
+    private void OnEnable()
+    {
+        InputHandler.OnMove += Move;
+        InputHandler.OnJump += Jump;
+    }
+    private void OnDisable()
+    {
+        InputHandler.OnMove -= Move;
+        InputHandler.OnJump -= Jump;
+    }
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
     private void Update()
     {
-        //movimiento del player
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
-        transform.Translate(move * speed * Time.deltaTime);
-
-        //rotacion de la camara
-        Vector3 rotacionCamara = camara.rotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(0f, rotacionCamara.y, 0f);
 
     }
-
-    public void OnMove(InputAction.CallbackContext context)
+    private void FixedUpdate()
     {
-        moveInput = context.ReadValue<Vector2>();
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if (context.performed && canJump)
+        if(Physics.Raycast(transform.position,Vector3.down,distance, layer))
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            canJump = false;
+            if (canJump)
+            {
+                rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+            }
         }
     }
-  
-    private void OnCollisionEnter(Collision collision)
+    private void LateUpdate()
     {
-        canJump = true;
+        rb.linearVelocity = new Vector3(moveInput.x* speed, rb.linearVelocity.y, moveInput.y * speed);
+
+    }
+    public void Move(Vector2 direction)
+    {
+        moveInput = direction;
+    }
+
+    public void Jump(bool value)
+    {
+            canJump = value;
     }
 }
