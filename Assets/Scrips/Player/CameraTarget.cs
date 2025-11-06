@@ -1,9 +1,21 @@
+using System;
 using UnityEngine;
 
 public class CameraTarget : MonoBehaviour
 {
-    void LateUpdate()
+    public event Action OnRotationCamera;
+
+    private void LateUpdate()
     {
-        transform.localRotation = Quaternion.identity; 
+        RotationCamara();
+    }
+
+    public void RotationCamara()
+    {
+        // reset local rotation (si eso es lo que quieres)
+        transform.localRotation = Quaternion.identity;
+
+        // invoca de forma segura (null-safe)
+        OnRotationCamera?.Invoke();
     }
 }

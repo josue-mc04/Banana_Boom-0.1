@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float climbSpeed;
     private float currentSpeed;
     private Vector2 moveInput;
+   
 
     [Header("Jump Player")]
     [SerializeField] private int jumpForce;
@@ -19,6 +21,8 @@ public class PlayerControler : MonoBehaviour
     [Header("Raycast")]
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
+    [SerializeField] private CameraTarget camera;
+
 
     private bool isRun;
     private bool isClimb;
@@ -27,13 +31,35 @@ public class PlayerControler : MonoBehaviour
         InputHandler.OnMove += HandleMove;
         InputHandler.OnJump += HandleJump;
         InputHandler.OnRun += HandleRun;
+        camera.OnRotationCamera += RotatePlayer;
     }
     private void OnDisable()
     {
         InputHandler.OnMove -= HandleMove;
         InputHandler.OnJump -= HandleJump;
         InputHandler.OnRun -= HandleRun;
+       // camera.OnRotationCamera -= RotatePlayer;
     }
+
+    /*private void RotatePlayer()
+    {
+        // Tomamos la dirección frontal de la cámara, ignorando el eje Y
+        Vector3 camForward = camera.transform.forward;
+        camForward.y = 0f;
+        camForward.Normalize();
+
+        // Solo rotamos si hay movimiento (evita rotación cuando está quieto)
+        if (moveInput.sqrMagnitude > 0.01f)
+        {
+            // Calculamos la dirección deseada según entrada y cámara
+            Vector3 moveDir = camForward * moveInput.y + camera.transform.right * moveInput.x;
+            moveDir.y = 0f;
+
+            Quaternion targetRot = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 10f * Time.deltaTime);
+        }
+    }*/
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
