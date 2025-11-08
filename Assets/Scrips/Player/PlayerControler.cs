@@ -31,7 +31,7 @@ public class PlayerControler : MonoBehaviour
         InputHandler.OnMove += HandleMove;
         InputHandler.OnJump += HandleJump;
         InputHandler.OnRun += HandleRun;
-        camera.OnRotationCamera += RotatePlayer;
+        //camera.OnRotationCamera += RotatePlayer;
     }
     private void OnDisable()
     {
@@ -66,6 +66,8 @@ public class PlayerControler : MonoBehaviour
     }
     private void FixedUpdate()
     {
+       // Physics.SphereCast
+
         if(Physics.Raycast(transform.position,Vector3.down,distance, layer))
         {
             if (canJump)
@@ -120,4 +122,4 @@ public class PlayerControler : MonoBehaviour
             rb.useGravity = true;
         }
     }
-}
+}   
