@@ -47,7 +47,7 @@ public class PlayerControler : MonoBehaviour
             canJump = false;
         }
     }
-  
+
     private void OnCollisionEnter(Collision collision)
     {
         canJump = true;
