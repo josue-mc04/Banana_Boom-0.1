@@ -14,9 +14,8 @@ public class PlayerControler : MonoBehaviour
     private Rigidbody rb;
     private bool canJump = true;
 
-    /*
     [Header("Rotacion de camara pal player dx")]
-    public Transform camara;*/
+    public Transform camara;
 
     private void Awake()
     {
@@ -28,9 +27,9 @@ public class PlayerControler : MonoBehaviour
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
         transform.Translate(move * speed * Time.deltaTime);
 
-        /*//rotacion de la camara
+        //rotacion de la camara
         Vector3 rotacionCamara = camara.rotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(0f, rotacionCamara.y, 0f);*/
+        transform.rotation = Quaternion.Euler(0f, rotacionCamara.y, 0f);
 
     }
 
