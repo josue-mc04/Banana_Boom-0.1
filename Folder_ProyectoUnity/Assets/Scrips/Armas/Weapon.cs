@@ -11,8 +11,8 @@ public class Weapon : MonoBehaviour, Iweapon
 {
     [Header("Weapon stats")] //estadistica de arma
     protected string weaponName;
-    protected int ammo;
-    protected int damage;
+    protected int ammo = 20;
+    protected int damage = 5;
 
     public virtual void Fire()
     {

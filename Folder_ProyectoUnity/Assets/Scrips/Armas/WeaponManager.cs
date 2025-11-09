@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -17,6 +18,32 @@ public class WeaponManager : MonoBehaviour
             Debug.Log("No hay armas asignadas al WeaponManager");
         }
     }
+    
+    #region Metodos para los inputs actions
+    public void OnSwitchWeapon(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            SwitchWeapon();
+        }
+    }
+
+    public void OnFire(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            FireCurrentWeapon();
+        }
+    }
+
+    public void OnReload(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            ReloadCurrentWeapon();
+        }
+    }
+    #endregion
 
     public void SwitchWeapon()
     {
