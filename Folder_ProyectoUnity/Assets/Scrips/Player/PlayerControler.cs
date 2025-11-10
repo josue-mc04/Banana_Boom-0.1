@@ -21,7 +21,7 @@ public class PlayerControler : MonoBehaviour
     [Header("Raycast")]
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
-    [SerializeField] private CameraTarget camera;
+    //[SerializeField] private CameraTarget camera;
 
 
     private bool isRun;
