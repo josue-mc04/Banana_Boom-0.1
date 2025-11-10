@@ -1035,6 +1035,151 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 377609271}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+<<<<<<< HEAD
+=======
+--- !u!1 &385610379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 385610381}
+  - component: {fileID: 385610380}
+  m_Layer: 0
+  m_Name: PlayerInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &385610380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385610379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 3c8f827ae1bc96c4b84cc7b151268a83, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1425900764}
+        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 123305a3-b1ea-4a1c-8da7-48cf7b6dcb42
+    m_ActionName: 'Game/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1425900764}
+        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 90fe0b53-356a-42d5-92d5-fc57b38ebe3f
+    m_ActionName: 'Game/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2056950700}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
+        m_MethodName: OnFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 161cdef5-9a81-4ef8-8c84-b68d561791ba
+    m_ActionName: 'Weapons/Fire[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2056950700}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
+        m_MethodName: OnReload
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a635888c-9a30-46e6-84fa-bf6004a09dc5
+    m_ActionName: 'Weapons/Reload[/Keyboard/r]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2056950700}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
+        m_MethodName: OnSwitchWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8f254b38-1a6d-47d1-9c5a-fde2116468ee
+    m_ActionName: 'Weapons/SwitchWeapon[/Keyboard/q]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboards
+  m_DefaultActionMap: Game
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!4 &385610381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385610379}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.651553, y: 7.77, z: -88.329}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> rama-Arroyo
 --- !u!1 &387146440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1289,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 95439497}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!114 &387146445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1157,6 +1303,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Jumpforce: 1000
+=======
+--- !u!4 &393565115 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
+  m_PrefabInstance: {fileID: 3895849824509807671}
+  m_PrefabAsset: {fileID: 0}
+>>>>>>> rama-Arroyo
 --- !u!1 &469219862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,6 +1344,7 @@ Transform:
   - {fileID: 242882150}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &485592088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,6 +1529,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569829341}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+=======
+>>>>>>> rama-Arroyo
 --- !u!1 &569996722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,8 +1956,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860384096}
   serializedVersion: 2
+<<<<<<< HEAD
   m_LocalRotation: {x: 0.16232948, y: -0.041311324, z: 0.006802311, w: 0.985848}
   m_LocalPosition: {x: 10.34, y: 5.905647, z: -77.63}
+=======
+  m_LocalRotation: {x: 0.111257404, y: 0.06937453, z: -0.007785882, w: 0.99133664}
+  m_LocalPosition: {x: 8.66, y: 6.611058, z: -88.007164}
+>>>>>>> rama-Arroyo
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2370,6 +2531,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090635024}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+<<<<<<< HEAD
 --- !u!1 &1177873714
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,6 +2761,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1308633905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> rama-Arroyo
 --- !u!1 &1303064191
 GameObject:
   m_ObjectHideFlags: 0
@@ -2705,7 +2869,11 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
+<<<<<<< HEAD
     TrackingTarget: {fileID: 1874141731}
+=======
+    TrackingTarget: {fileID: 340441648}
+>>>>>>> rama-Arroyo
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -2736,8 +2904,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303064191}
   serializedVersion: 2
+<<<<<<< HEAD
   m_LocalRotation: {x: 0.16232947, y: -0.04131132, z: 0.00680231, w: 0.985848}
   m_LocalPosition: {x: 10.34, y: 5.905647, z: -77.63}
+=======
+  m_LocalRotation: {x: 0.11125739, y: 0.069374524, z: -0.0077858814, w: 0.9913367}
+  m_LocalPosition: {x: 8.66, y: 6.611058, z: -88.007164}
+>>>>>>> rama-Arroyo
   m_LocalScale: {x: 1.9051, y: 1.9051, z: 1.9051}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2901,39 +3074,6 @@ MonoBehaviour:
     FrequencyGain: 1
     Duration: 1
     m_NoiseOffsets: {x: 0, y: 0, z: 0}
---- !u!1 &1308633904
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1308633905}
-  m_Layer: 0
-  m_Name: SoporteArmas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1308633905
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308633904}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 569829342}
-  - {fileID: 1225648095}
-  m_Father: {fileID: 1425900759}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1332977495
 GameObject:
   m_ObjectHideFlags: 0
@@ -3237,9 +3377,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 340441648}
+<<<<<<< HEAD
   - {fileID: 1308633905}
   - {fileID: 1874141731}
   - {fileID: 1021135635}
+=======
+  - {fileID: 393565115}
+>>>>>>> rama-Arroyo
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1425900760
@@ -3357,6 +3501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d857827fd650eaa45adf8a9026670844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   speed: 6
   runSpeed: 20
   climbSpeed: 5
@@ -3366,6 +3511,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   camera: {fileID: 1425900766}
+=======
+  speed: 11
+  jumpForce: 9
+>>>>>>> rama-Arroyo
 --- !u!114 &1425900765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3378,6 +3527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8753b055d1fbe674a93a72a5d882f4d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   armas:
   - {fileID: 569829341}
   - {fileID: 1225648091}
@@ -3393,6 +3543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8feca3917cdbaf4fb745acd900ebcc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+>>>>>>> rama-Arroyo
 --- !u!1 &1445219866
 GameObject:
   m_ObjectHideFlags: 0
@@ -4745,7 +4897,11 @@ Transform:
   - {fileID: 155006114}
   m_Father: {fileID: 469219863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &1874141730
+=======
+--- !u!1 &2056950699
+>>>>>>> rama-Arroyo
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4753,21 +4909,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 1874141731}
   - component: {fileID: 1874141732}
   m_Layer: 0
   m_Name: CameraTarget
+=======
+  - component: {fileID: 2056950701}
+  - component: {fileID: 2056950700}
+  m_Layer: 0
+  m_Name: WeaponManager
+>>>>>>> rama-Arroyo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!4 &1874141731
+=======
+--- !u!114 &2056950700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056950699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c64aa20c1e1b0f4e9332776de03aa9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 7245064392296790381, guid: e9899756083111e43b8ca4bee762c411, type: 3}
+  - {fileID: 4648895062617272270, guid: aae8e4eeedd1d8a4199e1d7e7ccb451c, type: 3}
+  - {fileID: 6021921812342648944, guid: 8d01f1ec9d17277498b27862a307372e, type: 3}
+--- !u!4 &2056950701
+>>>>>>> rama-Arroyo
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1874141730}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -4942,6 +5126,16 @@ Transform:
   - {fileID: 485592089}
   - {fileID: 1721325306}
   m_Father: {fileID: 1021135635}
+=======
+  m_GameObject: {fileID: 2056950699}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.847881, y: 9.698303, z: -84.926575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+>>>>>>> rama-Arroyo
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2085559812
 GameObject:
@@ -5065,7 +5259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bd8795f48ae6049af5d9a623a0bb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jumpforce: 1000
 --- !u!65 &2085559818
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5195,6 +5388,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1755094387}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3895849824509807671
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1425900759}
+    m_Modifications:
+    - target: {fileID: 489973238211665290, guid: 280406faaea58144986377701c15b84a, type: 3}
+      propertyPath: m_Name
+      value: ShootPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.901
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 280406faaea58144986377701c15b84a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5206,5 +5456,10 @@ SceneRoots:
   - {fileID: 1425900759}
   - {fileID: 469219863}
   - {fileID: 1332977498}
+<<<<<<< HEAD
   - {fileID: 1343171486}
   - {fileID: 910644663}
+=======
+  - {fileID: 385610381}
+  - {fileID: 2056950701}
+>>>>>>> rama-Arroyo

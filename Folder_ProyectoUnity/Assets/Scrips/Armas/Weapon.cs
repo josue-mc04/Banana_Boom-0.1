@@ -1,47 +1,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public interface Iweapon
 {
-    public List<GameObject> armas; 
-    private int indiceActual = 0;
+    void Fire();
+    void Reload();
+    void Equip();
+}
+public class Weapon : MonoBehaviour, Iweapon
+{
+    [Header("Weapon stats")] //estadistica de arma
+    protected string weaponName;
+    protected int ammo = 20;
+    protected int damage = 5;
 
-    void Start()
+    public virtual void Fire()
     {
-        ActivarArma(indiceActual);
+        Debug.Log(weaponName + " dispara. Da�o: " + damage);
     }
 
-    void Update()
+    public virtual void Reload()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            CambiarArma();
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Disparar();
-        }
+        Debug.Log(weaponName + " recargado");
     }
 
-    void CambiarArma()
+    public virtual void Equip()
     {
-        armas[indiceActual].SetActive(false);
-        indiceActual = (indiceActual + 1) % armas.Count;
-        armas[indiceActual].SetActive(true);
-        Debug.Log("arma actual: " + armas[indiceActual].name);
+        Debug.Log(weaponName + " equipada.");
     }
-
-    void Disparar()
-    {
-        Debug.Log("usaste el arma: " + armas[indiceActual].name);
-    }
-
-    void ActivarArma(int i)
-    {
-        for (int j = 0; j < armas.Count; j++)
-        {
-            armas[j].SetActive(j == i);
-        }
-    }
+    
 }

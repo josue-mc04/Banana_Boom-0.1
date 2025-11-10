@@ -43,15 +43,15 @@ public class PlayerControler : MonoBehaviour
 
     /*private void RotatePlayer()
     {
-        // Tomamos la dirección frontal de la cámara, ignorando el eje Y
+        // Tomamos la direcciï¿½n frontal de la cï¿½mara, ignorando el eje Y
         Vector3 camForward = camera.transform.forward;
         camForward.y = 0f;
         camForward.Normalize();
 
-        // Solo rotamos si hay movimiento (evita rotación cuando está quieto)
+        // Solo rotamos si hay movimiento (evita rotaciï¿½n cuando estï¿½ quieto)
         if (moveInput.sqrMagnitude > 0.01f)
         {
-            // Calculamos la dirección deseada según entrada y cámara
+            // Calculamos la direcciï¿½n deseada segï¿½n entrada y cï¿½mara
             Vector3 moveDir = camForward * moveInput.y + camera.transform.right * moveInput.x;
             moveDir.y = 0f;
 
