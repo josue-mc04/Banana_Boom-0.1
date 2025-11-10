@@ -1,55 +1,125 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerControler : MonoBehaviour
 {
     [Header("Movement Player")]
     [SerializeField] private float speed;
+    [SerializeField] private float runSpeed;
+    [SerializeField] private float climbSpeed;
+    private float currentSpeed;
     private Vector2 moveInput;
+   
 
     [Header("Jump Player")]
     [SerializeField] private int jumpForce;
     private Rigidbody rb;
-    private bool canJump = true;
+    private bool canJump;
 
-    /*
-    [Header("Rotacion de camara pal player dx")]
-    public Transform camara;*/
+
+    [Header("Raycast")]
+    [SerializeField] private float distance;
+    [SerializeField] private LayerMask layer;
+    //[SerializeField] private CameraTarget camera;
+
+
+    private bool isRun;
+    private bool isClimb;
+    private void OnEnable()
+    {
+        InputHandler.OnMove += HandleMove;
+        InputHandler.OnJump += HandleJump;
+        InputHandler.OnRun += HandleRun;
+        //camera.OnRotationCamera += RotatePlayer;
+    }
+    private void OnDisable()
+    {
+        InputHandler.OnMove -= HandleMove;
+        InputHandler.OnJump -= HandleJump;
+        InputHandler.OnRun -= HandleRun;
+       // camera.OnRotationCamera -= RotatePlayer;
+    }
+
+    /*private void RotatePlayer()
+    {
+        // Tomamos la direcci�n frontal de la c�mara, ignorando el eje Y
+        Vector3 camForward = camera.transform.forward;
+        camForward.y = 0f;
+        camForward.Normalize();
+
+        // Solo rotamos si hay movimiento (evita rotaci�n cuando est� quieto)
+        if (moveInput.sqrMagnitude > 0.01f)
+        {
+            // Calculamos la direcci�n deseada seg�n entrada y c�mara
+            Vector3 moveDir = camForward * moveInput.y + camera.transform.right * moveInput.x;
+            moveDir.y = 0f;
+
+            Quaternion targetRot = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 10f * Time.deltaTime);
+        }
+    }*/
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        //movimiento del player
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
-        transform.Translate(move * speed * Time.deltaTime);
+       // Physics.SphereCast
 
-        /*//rotacion de la camara
-        Vector3 rotacionCamara = camara.rotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(0f, rotacionCamara.y, 0f);*/
-
-    }
-
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        moveInput = context.ReadValue<Vector2>();
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if (context.performed && canJump)
+        if(Physics.Raycast(transform.position,Vector3.down,distance, layer))
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            canJump = false;
+            if (canJump)
+            {
+                rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+            }
+        }
+
+        if (isClimb)
+        {
+            rb.linearVelocity = new Vector3(moveInput.x * climbSpeed, moveInput.y * climbSpeed, rb.linearVelocity.z);
+        }
+        else
+        {
+            rb.linearVelocity = Move();
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
+    private Vector3 Move()
     {
-        canJump = true;
+        if (isRun)
+        {
+            currentSpeed = runSpeed;
+        }
+        else
+        {
+            currentSpeed = speed;
+        }
+        return new Vector3(moveInput.x * currentSpeed, rb.linearVelocity.y, moveInput.y * currentSpeed);
     }
-}
+    private void HandleMove(Vector2 direction)
+    {
+        moveInput = direction;
+    }
+    private void HandleJump(bool value)
+    {
+        canJump = value;
+    }
+    private void HandleRun(bool value)
+    {
+        isRun = value;
+    }
+    public void Climb(bool value)
+    {
+        isClimb = value;
+        if (value)
+        {
+            rb.useGravity = false;
+            rb.linearVelocity = Vector3.zero; 
+        }
+        else
+        {
+            rb.useGravity = true;
+        }
+    }
+}   
