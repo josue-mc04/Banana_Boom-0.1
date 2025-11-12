@@ -1623,6 +1623,7 @@ GameObject:
   - component: {fileID: 860384097}
   - component: {fileID: 860384100}
   - component: {fileID: 860384101}
+  - component: {fileID: 860384102}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1780,6 +1781,59 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &860384102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860384096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 2
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &894933089
 GameObject:
   m_ObjectHideFlags: 0
@@ -3202,6 +3256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d857827fd650eaa45adf8a9026670844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 50
+  _deathEffect: {fileID: 0}
+  hitEffect: {fileID: 0}
+  _healthbar: {fileID: 1983370962}
   speed: 6
   runSpeed: 20
   climbSpeed: 5
@@ -3223,6 +3281,7 @@ GameObject:
   - component: {fileID: 1445219869}
   - component: {fileID: 1445219868}
   - component: {fileID: 1445219867}
+  - component: {fileID: 1445219872}
   m_Layer: 0
   m_Name: fondo
   m_TagString: Untagged
@@ -3341,6 +3400,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1445219872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445219866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa75a90d8dd5d2744818e766e1fe0754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePerTick: 5
+  tickInterval: 2
 --- !u!1 &1458234446
 GameObject:
   m_ObjectHideFlags: 0
@@ -4692,6 +4765,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1983370961}
+  - component: {fileID: 1983370962}
   m_Layer: 0
   m_Name: Healt Bar
   m_TagString: Untagged
@@ -4716,6 +4790,19 @@ Transform:
   - {fileID: 1721325306}
   m_Father: {fileID: 1021135635}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1983370962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983370960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa2e674fe9f0d1409e0dd762bb1791e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthbarSprite: {fileID: 1518451948}
 --- !u!1 &2085559812
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlayerControler : MonoBehaviour
 {
+    [Header("HealthPoints")]
+    [SerializeField] private float _maxHealth = 50;
+    [SerializeField] private GameObject _deathEffect, hitEffect;
+    private float _currentHealth;
+
+    [SerializeField] private Healthbar _healthbar;
+
     [Header("Movement Player")]
     [SerializeField] private float speed;
     [SerializeField] private float runSpeed;
@@ -21,7 +28,6 @@ public class PlayerControler : MonoBehaviour
     [Header("Raycast")]
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
-    //[SerializeField] private CameraTarget camera;
 
 
     private bool isRun;
@@ -31,39 +37,33 @@ public class PlayerControler : MonoBehaviour
         InputHandler.OnMove += HandleMove;
         InputHandler.OnJump += HandleJump;
         InputHandler.OnRun += HandleRun;
-        //camera.OnRotationCamera += RotatePlayer;
+    
     }
     private void OnDisable()
     {
         InputHandler.OnMove -= HandleMove;
         InputHandler.OnJump -= HandleJump;
         InputHandler.OnRun -= HandleRun;
-       // camera.OnRotationCamera -= RotatePlayer;
+      
     }
 
-    /*private void RotatePlayer()
-    {
-        // Tomamos la direcci�n frontal de la c�mara, ignorando el eje Y
-        Vector3 camForward = camera.transform.forward;
-        camForward.y = 0f;
-        camForward.Normalize();
-
-        // Solo rotamos si hay movimiento (evita rotaci�n cuando est� quieto)
-        if (moveInput.sqrMagnitude > 0.01f)
-        {
-            // Calculamos la direcci�n deseada seg�n entrada y c�mara
-            Vector3 moveDir = camForward * moveInput.y + camera.transform.right * moveInput.x;
-            moveDir.y = 0f;
-
-            Quaternion targetRot = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 10f * Time.deltaTime);
-        }
-    }*/
-
+   
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        _currentHealth = _maxHealth;
+
+        _healthbar.UpdateHealthbar(_maxHealth, _currentHealth);
+    }
+
+
     private void FixedUpdate()
     {
        // Physics.SphereCast
@@ -84,6 +84,7 @@ public class PlayerControler : MonoBehaviour
         {
             rb.linearVelocity = Move();
         }
+
     }
     private Vector3 Move()
     {
@@ -121,5 +122,31 @@ public class PlayerControler : MonoBehaviour
         {
             rb.useGravity = true;
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (damage <= 0) return;
+
+        _currentHealth -= damage;
+        _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
+
+        if (hitEffect != null)
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
+
+        if (_healthbar != null)
+            _healthbar.UpdateHealthbar(_maxHealth, _currentHealth);
+
+        if (_currentHealth <= 0f)
+            Die();
+    }
+
+    private void Die()
+    {
+        if (_deathEffect != null)
+            Instantiate(_deathEffect, transform.position, Quaternion.identity);
+
+     
+        Destroy(gameObject);
     }
 }   
