@@ -1153,7 +1153,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 387146440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47bd8795f48ae6049af5d9a623a0bb64, type: 3}
+  m_Script: {fileID: 11500000, guid: d48df69c1ae899642941075bb89d9216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Jumpforce: 1000
@@ -1498,10 +1498,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 631122277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47bd8795f48ae6049af5d9a623a0bb64, type: 3}
+  m_Script: {fileID: 11500000, guid: d48df69c1ae899642941075bb89d9216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jumpforce: 1500
+  Jumpforce: 1000
 --- !u!1 &702956938
 GameObject:
   m_ObjectHideFlags: 0
@@ -4253,10 +4253,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1618590146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47bd8795f48ae6049af5d9a623a0bb64, type: 3}
+  m_Script: {fileID: 11500000, guid: d48df69c1ae899642941075bb89d9216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jumpforce: 1050
+  Jumpforce: 1000
 --- !u!1 &1698705524
 GameObject:
   m_ObjectHideFlags: 0
@@ -4545,7 +4545,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1723086811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47bd8795f48ae6049af5d9a623a0bb64, type: 3}
+  m_Script: {fileID: 11500000, guid: d48df69c1ae899642941075bb89d9216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Jumpforce: 1000
@@ -4874,7 +4874,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -4955,7 +4955,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2085559812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47bd8795f48ae6049af5d9a623a0bb64, type: 3}
+  m_Script: {fileID: 11500000, guid: d48df69c1ae899642941075bb89d9216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Jumpforce: 1000
@@ -5229,7 +5229,7 @@ PrefabInstance:
     - target: {fileID: 6878463370203681967, guid: 6afacda2fd44b2f4496fff733b1e6f0b, type: 3}
       propertyPath: shootPoint
       value: 
-      objectReference: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
+      objectReference: {fileID: 393565115}
     - target: {fileID: 6878463370203681967, guid: 6afacda2fd44b2f4496fff733b1e6f0b, type: 3}
       propertyPath: bananaPrefab
       value: 

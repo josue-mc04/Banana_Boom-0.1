@@ -12,7 +12,7 @@ public class PapayaBomb : Weapon
         if (ammo > 0)
         {
             ammo--;
-            Debug.Log($"{weaponName} lanza una bomba de papaya (radio {radius}m, daño {damage})");
+            Debug.Log($"{weaponName} lanza una bomba de papaya (radio {radius}m, dano {damage})");
 
             GameObject papaya = Instantiate(papayaPrefab, shootPoint.position, shootPoint.rotation);
             papaya.GetComponent<Rigidbody>().AddForce(shootPoint.forward * throwForce, ForceMode.Impulse);
