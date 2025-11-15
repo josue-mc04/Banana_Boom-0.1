@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerControler : MonoBehaviour
 {
@@ -16,38 +17,20 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float runSpeed;
     [SerializeField] private float climbSpeed;
     private float currentSpeed;
-    private Vector2 moveInput;
-   
+    protected Vector2 moveInput; 
 
     [Header("Jump Player")]
     [SerializeField] private int jumpForce;
     private Rigidbody rb;
-    private bool canJump;
-
+    protected bool canJump; 
 
     [Header("Raycast")]
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
 
-
-    private bool isRun;
+    protected bool isRun;
     private bool isClimb;
-    private void OnEnable()
-    {
-        InputHandler.OnMove += HandleMove;
-        InputHandler.OnJump += HandleJump;
-        InputHandler.OnRun += HandleRun;
-    
-    }
-    private void OnDisable()
-    {
-        InputHandler.OnMove -= HandleMove;
-        InputHandler.OnJump -= HandleJump;
-        InputHandler.OnRun -= HandleRun;
-      
-    }
 
-   
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -59,20 +42,17 @@ public class PlayerControler : MonoBehaviour
         Cursor.visible = false;
 
         _currentHealth = _maxHealth;
-
         _healthbar.UpdateHealthbar(_maxHealth, _currentHealth);
     }
 
-
     private void FixedUpdate()
     {
-       // Physics.SphereCast
-
-        if(Physics.Raycast(transform.position,Vector3.down,distance, layer))
+        if (Physics.Raycast(transform.position, Vector3.down, distance, layer))
         {
             if (canJump)
             {
                 rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+                canJump = false;
             }
         }
 
@@ -84,39 +64,37 @@ public class PlayerControler : MonoBehaviour
         {
             rb.linearVelocity = Move();
         }
-
     }
+
     private Vector3 Move()
     {
-        if (isRun)
-        {
-            currentSpeed = runSpeed;
-        }
-        else
-        {
-            currentSpeed = speed;
-        }
+        currentSpeed = isRun ? runSpeed : speed;
         return new Vector3(moveInput.x * currentSpeed, rb.linearVelocity.y, moveInput.y * currentSpeed);
     }
-    private void HandleMove(Vector2 direction)
+
+    public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = direction;
+        moveInput = context.ReadValue<Vector2>();
     }
-    private void HandleJump(bool value)
+
+    public void OnJump(InputAction.CallbackContext context)
     {
-        canJump = value;
+        if (context.performed)
+            canJump = true;
     }
-    private void HandleRun(bool value)
+
+    public void OnRun(InputAction.CallbackContext context)
     {
-        isRun = value;
+        isRun = context.performed;
     }
+
     public void Climb(bool value)
     {
         isClimb = value;
         if (value)
         {
             rb.useGravity = false;
-            rb.linearVelocity = Vector3.zero; 
+            rb.linearVelocity = Vector3.zero;
         }
         else
         {
@@ -146,7 +124,6 @@ public class PlayerControler : MonoBehaviour
         if (_deathEffect != null)
             Instantiate(_deathEffect, transform.position, Quaternion.identity);
 
-     
         Destroy(gameObject);
     }
-}   
+}
