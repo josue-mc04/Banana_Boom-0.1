@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CoconutProjectile : Weapon
 {
+    public WeaponEffects effects;
+
     [SerializeField] private GameObject coconutPrefab;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float shootForce = 15f;
@@ -19,5 +21,11 @@ public class CoconutProjectile : Weapon
     public override void Reload()
     {
         Debug.Log($"{weaponName} recarga sus cocos.");
+    }
+
+    private void Update()
+    {
+        float speed = effects.GetProjectileSpeed();
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 }

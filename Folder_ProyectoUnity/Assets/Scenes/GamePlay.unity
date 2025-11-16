@@ -419,8 +419,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100606718}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 3.8700001, z: 78.34}
+  m_LocalRotation: {x: -0, y: 0.9990108, z: -0, w: 0.04446858}
+  m_LocalPosition: {x: 10.001148, y: 3.8700001, z: 78.41066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -429,7 +429,7 @@ Transform:
   - {fileID: 1172441225}
   - {fileID: 875643640}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 174.903, z: 0}
 --- !u!1 &125327425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,7 +1323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48df69c1ae899642941075bb89d9216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jumpforce: 1000
 --- !u!4 &393565115 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
@@ -1772,7 +1771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48df69c1ae899642941075bb89d9216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jumpforce: 1000
 --- !u!1 &648365208
 GameObject:
   m_ObjectHideFlags: 0
@@ -4979,7 +4977,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1618590146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d48df69c1ae899642941075bb89d9216, type: 3}
+  m_Script: {fileID: 11500000, guid: 47bd8795f48ae6049af5d9a623a0bb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Jumpforce: 1000
@@ -5410,7 +5408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48df69c1ae899642941075bb89d9216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jumpforce: 1000
 --- !u!135 &1723086814
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6028,7 +6025,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2085559812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d48df69c1ae899642941075bb89d9216, type: 3}
+  m_Script: {fileID: 11500000, guid: 47bd8795f48ae6049af5d9a623a0bb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Jumpforce: 1000
