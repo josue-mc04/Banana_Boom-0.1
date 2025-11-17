@@ -1,82 +1,101 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using DG.Tweening;
 
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] private List<Weapon> weapons = new List<Weapon>();
-    private int currentIndex = 0;
+    [SerializeField] private Weapon[] allWeaponsInInspector;
+    [SerializeField] private Transform weaponHolder;
+
+    private LinkedList<Weapon> weaponLinkedList;
+    private LinkedListNode<Weapon> currentlyEquippedWeaponNode;
 
     private void Start()
     {
-        if (weapons.Count > 0)
+        InitializeWeaponLinkedList();
+
+        if (currentlyEquippedWeaponNode != null)
         {
-            Debug.Log($"Arma inicial: {weapons[currentIndex].name}");
+            EquipWeapon(currentlyEquippedWeaponNode.Value);
         }
         else
         {
-            Debug.Log("No hay armas asignadas al WeaponManager");
-        }
-    }
-    
-    #region Metodos para los inputs actions
-    public void OnSwitchWeapon(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            SwitchWeapon();
+            Debug.LogWarning("No hay armas asignadas en WeaponManager.");
         }
     }
 
-    public void OnFire(InputAction.CallbackContext context)
+    private void InitializeWeaponLinkedList()
     {
-        if (context.performed)
+        weaponLinkedList = new LinkedList<Weapon>();
+
+        for (int i = 0; i < allWeaponsInInspector.Length; i++)
         {
-            FireCurrentWeapon();
+            weaponLinkedList.AddLast(allWeaponsInInspector[i]);
         }
+
+        currentlyEquippedWeaponNode = weaponLinkedList.First;
     }
 
-    public void OnReload(InputAction.CallbackContext context)
+    public void OnNextWeapon(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            ReloadCurrentWeapon();
-        }
-    }
-    #endregion
-
-    public void SwitchWeapon()
-    {
-        if (weapons.Count == 0)
+        if (!context.performed || currentlyEquippedWeaponNode == null)
         {
             return;
         }
-        currentIndex++;
-        if (currentIndex >= weapons.Count)
-        {
-            currentIndex = 0;
-        }
 
-        Debug.Log($"Cambiaste a: {weapons[currentIndex].name}");
+        currentlyEquippedWeaponNode = currentlyEquippedWeaponNode.Next ?? weaponLinkedList.First;
+        EquipWeapon(currentlyEquippedWeaponNode.Value);
     }
 
-    public void FireCurrentWeapon()
+    public void OnPreviousWeapon(InputAction.CallbackContext context)
     {
-        if (weapons.Count == 0)
+        if (!context.performed || currentlyEquippedWeaponNode == null)
         {
-            return; 
+            return;
         }
 
-        weapons[currentIndex].Fire();
+        currentlyEquippedWeaponNode = currentlyEquippedWeaponNode.Previous ?? weaponLinkedList.Last;
+        EquipWeapon(currentlyEquippedWeaponNode.Value);
     }
 
-    public void ReloadCurrentWeapon()
+    public void OnFireWeapon(InputAction.CallbackContext context)
     {
-        if (weapons.Count == 0)
-        { 
-            return; 
+        if (context.performed && currentlyEquippedWeaponNode != null)
+        {
+            currentlyEquippedWeaponNode.Value.Fire();
+        }
+    }
+
+    public void OnReloadWeapon(InputAction.CallbackContext context)
+    {
+        if (context.performed && currentlyEquippedWeaponNode != null)
+        {
+            currentlyEquippedWeaponNode.Value.Reload();
+        }
+    }
+
+    private void EquipWeapon(Weapon weaponToEquip)
+    {
+        LinkedListNode<Weapon> node = weaponLinkedList.First;
+        while (node != null)
+        {
+            node.Value.gameObject.SetActive(false);
+            node = node.Next;
         }
 
-        weapons[currentIndex].Reload();
+        weaponToEquip.gameObject.SetActive(true);
+
+        weaponToEquip.transform.SetParent(weaponHolder, false);
+        weaponToEquip.transform.localPosition = Vector3.zero;
+        weaponToEquip.transform.localRotation = Quaternion.identity;
+
+        WeaponEffects weaponEffects = weaponToEquip.GetComponent<WeaponEffects>();
+        if (weaponEffects != null)
+        {
+            weaponEffects.PlaySwitchTween();
+        }
+
+        Debug.Log($"Arma quipada: {weaponToEquip.name}");
     }
 }

@@ -58,7 +58,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coconutPrefab: {fileID: 8611982216582111686, guid: 6afacda2fd44b2f4496fff733b1e6f0b, type: 3}
   shootPoint: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
-  shootForce: 15
+  distance: 10
+  height: 3
+  travelTime: 1.2
   stunTime: 0
 --- !u!23 &9002970481985683836
 MeshRenderer:

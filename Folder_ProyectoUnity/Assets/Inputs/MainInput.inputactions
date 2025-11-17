@@ -79,7 +79,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchWeapon",
+                    "name": "PreviousWeapon",
                     "type": "Button",
                     "id": "f52545bd-041d-4364-b4fd-4b53cf3bf29e",
                     "expectedControlType": "",
@@ -88,7 +88,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire",
+                    "name": "NextWeapon",
+                    "type": "Button",
+                    "id": "7c61616e-edbf-49e7-b359-473f983115b2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FireWeapon",
                     "type": "Button",
                     "id": "b1f9629b-d7b4-40f6-8066-475f035d60ea",
                     "expectedControlType": "",
@@ -97,13 +106,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Reload",
+                    "name": "ReloadWeapon",
                     "type": "Button",
                     "id": "7c11d895-5a4d-4c48-884d-c888d1f7151e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -499,7 +508,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardWASD",
-                    "action": "SwitchWeapon",
+                    "action": "PreviousWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "875f9ddb-a636-4bd6-b5d3-b49c04f56fe7",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardWASD",
+                    "action": "NextWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -510,7 +530,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse;KeyboardWASD",
-                    "action": "Fire",
+                    "action": "FireWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -521,7 +541,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardWASD",
-                    "action": "Reload",
+                    "action": "ReloadWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
