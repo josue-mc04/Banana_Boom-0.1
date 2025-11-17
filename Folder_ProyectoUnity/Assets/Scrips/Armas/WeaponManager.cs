@@ -11,8 +11,19 @@ public class WeaponManager : MonoBehaviour
     private LinkedList<Weapon> weaponLinkedList;
     private LinkedListNode<Weapon> currentlyEquippedWeaponNode;
 
+
+    public WeaponDatabase database;
+    private CustomTree BananaWeponTree;
+
+
     private void Start()
     {
+        BananaWeponTree = new(database.GetWeapon("BananaMejoraA"));
+
+
+
+
+
         InitializeWeaponLinkedList();
 
         if (currentlyEquippedWeaponNode != null)
