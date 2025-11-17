@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: f1ef8e4ae05f1704f915200a869782de
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - papayaPrefab: {instanceID: 0}
+  - shootPoint: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
