@@ -1,5 +1,12 @@
 using UnityEngine;
 
+public enum PlayerType
+{
+
+    None,
+    Player1,
+    Player2
+}
 
 public enum WeaponType
 {
