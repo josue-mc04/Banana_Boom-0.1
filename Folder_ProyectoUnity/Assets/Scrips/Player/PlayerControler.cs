@@ -1,78 +1,58 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerControler : MonoBehaviour
 {
+    [Header("HealthPoints")]
+    [SerializeField] private float _maxHealth = 50;
+    [SerializeField] private GameObject _deathEffect, hitEffect;
+    private float _currentHealth;
+
+    [SerializeField] private Healthbar _healthbar;
+
     [Header("Movement Player")]
     [SerializeField] private float speed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float climbSpeed;
     private float currentSpeed;
-    private Vector2 moveInput;
-   
+    protected Vector2 moveInput; 
 
     [Header("Jump Player")]
     [SerializeField] private int jumpForce;
     private Rigidbody rb;
-    private bool canJump;
-
+    protected bool canJump; 
 
     [Header("Raycast")]
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
-    //[SerializeField] private CameraTarget camera;
 
-
-    private bool isRun;
+    protected bool isRun;
     private bool isClimb;
-    private void OnEnable()
-    {
-        InputHandler.OnMove += HandleMove;
-        InputHandler.OnJump += HandleJump;
-        InputHandler.OnRun += HandleRun;
-        //camera.OnRotationCamera += RotatePlayer;
-    }
-    private void OnDisable()
-    {
-        InputHandler.OnMove -= HandleMove;
-        InputHandler.OnJump -= HandleJump;
-        InputHandler.OnRun -= HandleRun;
-       // camera.OnRotationCamera -= RotatePlayer;
-    }
-
-    /*private void RotatePlayer()
-    {
-        // Tomamos la direcci�n frontal de la c�mara, ignorando el eje Y
-        Vector3 camForward = camera.transform.forward;
-        camForward.y = 0f;
-        camForward.Normalize();
-
-        // Solo rotamos si hay movimiento (evita rotaci�n cuando est� quieto)
-        if (moveInput.sqrMagnitude > 0.01f)
-        {
-            // Calculamos la direcci�n deseada seg�n entrada y c�mara
-            Vector3 moveDir = camForward * moveInput.y + camera.transform.right * moveInput.x;
-            moveDir.y = 0f;
-
-            Quaternion targetRot = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 10f * Time.deltaTime);
-        }
-    }*/
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        _currentHealth = _maxHealth;
+        _healthbar.UpdateHealthbar(_maxHealth, _currentHealth);
+    }
+
     private void FixedUpdate()
     {
-       // Physics.SphereCast
-
-        if(Physics.Raycast(transform.position,Vector3.down,distance, layer))
+        if (Physics.Raycast(transform.position, Vector3.down, distance, layer))
         {
             if (canJump)
             {
                 rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+                canJump = false;
             }
         }
 
@@ -85,41 +65,65 @@ public class PlayerControler : MonoBehaviour
             rb.linearVelocity = Move();
         }
     }
+
     private Vector3 Move()
     {
-        if (isRun)
-        {
-            currentSpeed = runSpeed;
-        }
-        else
-        {
-            currentSpeed = speed;
-        }
+        currentSpeed = isRun ? runSpeed : speed;
         return new Vector3(moveInput.x * currentSpeed, rb.linearVelocity.y, moveInput.y * currentSpeed);
     }
-    private void HandleMove(Vector2 direction)
+
+    public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = direction;
+        moveInput = context.ReadValue<Vector2>();
     }
-    private void HandleJump(bool value)
+
+    public void OnJump(InputAction.CallbackContext context)
     {
-        canJump = value;
+        if (context.performed)
+            canJump = true;
     }
-    private void HandleRun(bool value)
+
+    public void OnRun(InputAction.CallbackContext context)
     {
-        isRun = value;
+        isRun = context.performed;
     }
+
     public void Climb(bool value)
     {
         isClimb = value;
         if (value)
         {
             rb.useGravity = false;
-            rb.linearVelocity = Vector3.zero; 
+            rb.linearVelocity = Vector3.zero;
         }
         else
         {
             rb.useGravity = true;
         }
     }
-}   
+
+    public void TakeDamage(float damage)
+    {
+        if (damage <= 0) return;
+
+        _currentHealth -= damage;
+        _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
+
+        if (hitEffect != null)
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
+
+        if (_healthbar != null)
+            _healthbar.UpdateHealthbar(_maxHealth, _currentHealth);
+
+        if (_currentHealth <= 0f)
+            Die();
+    }
+
+    private void Die()
+    {
+        if (_deathEffect != null)
+            Instantiate(_deathEffect, transform.position, Quaternion.identity);
+
+        Destroy(gameObject);
+    }
+}

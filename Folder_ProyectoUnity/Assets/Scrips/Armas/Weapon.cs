@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour, Iweapon
 
     public virtual void Fire()
     {
-        Debug.Log(weaponName + " dispara. Da�o: " + damage);
+        Debug.Log(weaponName + " dispara. Dano: " + damage);
     }
 
     public virtual void Reload()
