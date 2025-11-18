@@ -14,6 +14,60 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "90480d59-d3c0-4d5b-acde-d55d0c5adb4d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "d7e73ecb-32c0-43d7-8a28-260474da0097",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PreviousWeapon",
+                    "type": "Button",
+                    "id": "0814aaa5-e479-4c86-a620-beaf4945f533",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NextWeapon",
+                    "type": "Button",
+                    "id": "4767fa25-ac35-4899-93ec-65b79833c52e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FireWeapon",
+                    "type": "Button",
+                    "id": "29580516-ca3a-4e05-bd6d-9c1ac022a153",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ReloadWeapon",
+                    "type": "Button",
+                    "id": "53cb3b61-1250-4db6-b09e-31f2dc67f114",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -71,6 +125,72 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "aa5bd859-4f2a-44b3-8605-095362bdbc5c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardAWSD&&Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5eb65646-561c-4304-9c2c-ec424cab1b78",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardAWSD&&Mouse",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6beecdf9-5d1a-46cc-b464-ceedb672ec6e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardAWSD&&Mouse",
+                    "action": "PreviousWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "81ed0f9a-af56-415f-9e54-1ec6b9727885",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardAWSD&&Mouse",
+                    "action": "NextWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bcd030d9-f766-4a17-937d-5cd20f0180e2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardAWSD&&Mouse",
+                    "action": "FireWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db1774b4-e3f2-492f-96f8-834754e84153",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardAWSD&&Mouse",
+                    "action": "ReloadWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -103,10 +223,10 @@
                 {
                     "name": "up",
                     "id": "14c9d1c1-8999-4fa7-88c2-2c23687a554b",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Gamepad>/rightStick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&&Mouse",
+                    "groups": "MandoxdASDaqwedsa",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -114,10 +234,10 @@
                 {
                     "name": "down",
                     "id": "f442b070-6526-412e-b4ce-14b1a75985a6",
-                    "path": "<Keyboard>/downArrow",
+                    "path": "<Gamepad>/rightStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&&Mouse",
+                    "groups": "MandoxdASDaqwedsa",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -125,10 +245,10 @@
                 {
                     "name": "left",
                     "id": "dcf09cf6-1e12-4cd5-8005-5d0bb54e0a26",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Gamepad>/rightStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&&Mouse",
+                    "groups": "MandoxdASDaqwedsa",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -136,65 +256,10 @@
                 {
                     "name": "right",
                     "id": "cba8cf3b-69c7-41db-ab8a-0b30504321c5",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Gamepad>/rightStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "2D Vector",
-                    "id": "27a8c894-6f86-4840-8245-a4f7048dd9a1",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "2bdaacf5-ad6e-42c9-b76c-31f99cfb1f9d",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";KeyboardAWSD&&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "8e107f25-0590-4494-b1f5-9ffd49ec58e4",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";KeyboardAWSD&&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "40c00712-3093-4371-a390-7c9ed1a14040",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";KeyboardAWSD&&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "973c4851-c895-4193-8562-49e83c07126b",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";KeyboardAWSD&&Mouse",
+                    "groups": "MandoxdASDaqwedsa",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -220,11 +285,11 @@
             ]
         },
         {
-            "name": "Keyboard&&Mouse",
-            "bindingGroup": "Keyboard&&Mouse",
+            "name": "MandoxdASDaqwedsa",
+            "bindingGroup": "MandoxdASDaqwedsa",
             "devices": [
                 {
-                    "devicePath": "<Keyboard>",
+                    "devicePath": "<Gamepad>",
                     "isOptional": false,
                     "isOR": false
                 }

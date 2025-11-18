@@ -75,17 +75,20 @@ public class PlayerControler : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+        Debug.Log($"Jugador {gameObject.name} moviéndose: {moveInput}");
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed)
             canJump = true;
+        Debug.Log($"Jugador {gameObject.name} saltando");
     }
 
     public void OnRun(InputAction.CallbackContext context)
     {
         isRun = context.performed;
+        Debug.Log($"Jugador {gameObject.name} corriendo: {isRun}");
     }
 
     public void Climb(bool value)
