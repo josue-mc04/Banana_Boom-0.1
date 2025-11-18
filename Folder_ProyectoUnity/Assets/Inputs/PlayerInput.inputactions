@@ -206,6 +206,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "de392371-79cd-49f7-831a-ac9721e7a400",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "a7a71cb7-acdd-4cea-b602-0a7248cd6a1c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -223,7 +241,7 @@
                 {
                     "name": "up",
                     "id": "14c9d1c1-8999-4fa7-88c2-2c23687a554b",
-                    "path": "<Gamepad>/rightStick/up",
+                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "MandoxdASDaqwedsa",
@@ -234,7 +252,7 @@
                 {
                     "name": "down",
                     "id": "f442b070-6526-412e-b4ce-14b1a75985a6",
-                    "path": "<Gamepad>/rightStick/down",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "MandoxdASDaqwedsa",
@@ -245,7 +263,7 @@
                 {
                     "name": "left",
                     "id": "dcf09cf6-1e12-4cd5-8005-5d0bb54e0a26",
-                    "path": "<Gamepad>/rightStick/left",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "MandoxdASDaqwedsa",
@@ -256,13 +274,35 @@
                 {
                     "name": "right",
                     "id": "cba8cf3b-69c7-41db-ab8a-0b30504321c5",
-                    "path": "<Gamepad>/rightStick/down",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "MandoxdASDaqwedsa",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f590cf24-8ce1-4f0b-918a-a1018258574f",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MandoxdASDaqwedsa",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "45bd9853-7325-47c0-88ad-dc20030d343c",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MandoxdASDaqwedsa",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
