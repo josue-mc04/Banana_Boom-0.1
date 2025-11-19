@@ -1063,7 +1063,7 @@ GameObject:
   - component: {fileID: 256260788}
   - component: {fileID: 256260790}
   - component: {fileID: 256260789}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Background S
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1249,7 +1249,7 @@ GameObject:
   - component: {fileID: 340441651}
   - component: {fileID: 340441650}
   - component: {fileID: 340441649}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1828,7 +1828,7 @@ GameObject:
   - component: {fileID: 485592089}
   - component: {fileID: 485592091}
   - component: {fileID: 485592090}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Background H
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2756,7 +2756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 894933091}
   - component: {fileID: 894933090}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3192,7 +3192,7 @@ GameObject:
   - component: {fileID: 1020506433}
   - component: {fileID: 1020506435}
   - component: {fileID: 1020506434}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ForeGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3268,7 +3268,7 @@ GameObject:
   - component: {fileID: 1021135638}
   - component: {fileID: 1021135637}
   - component: {fileID: 1021135636}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Health and Shield Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4245,7 +4245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1343171486}
   - component: {fileID: 1343171487}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InputHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4408,6 +4408,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6ec5e438-a66e-493f-b9c5-cc158e14bf15
     m_ActionName: 'Player2/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: de392371-79cd-49f7-831a-ac9721e7a400
+    m_ActionName: Player2/Jump
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a7a71cb7-acdd-4cea-b602-0a7248cd6a1c
+    m_ActionName: Player2/Run
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: KeyboardAWSD&&Mouse
   m_DefaultActionMap: Player1
@@ -4600,7 +4608,7 @@ GameObject:
   - component: {fileID: 1425900761}
   - component: {fileID: 1425900760}
   - component: {fileID: 1425900763}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4750,10 +4758,10 @@ MonoBehaviour:
   runSpeed: 20
   climbSpeed: 5
   jumpForce: 15
-  distance: 2
+  distance: 8
   layer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
 --- !u!1 &1432928118 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8611982216582111686, guid: 6afacda2fd44b2f4496fff733b1e6f0b, type: 3}
@@ -4898,7 +4906,7 @@ GameObject:
   - component: {fileID: 1445219868}
   - component: {fileID: 1445219867}
   - component: {fileID: 1445219872}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fondo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5149,7 +5157,7 @@ GameObject:
   - component: {fileID: 1470932298}
   - component: {fileID: 1470932300}
   - component: {fileID: 1470932299}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5360,7 +5368,7 @@ GameObject:
   - component: {fileID: 1518451947}
   - component: {fileID: 1518451949}
   - component: {fileID: 1518451948}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ForeGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5433,7 +5441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1540677702}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shield Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6196,7 +6204,7 @@ GameObject:
   - component: {fileID: 1721325306}
   - component: {fileID: 1721325308}
   - component: {fileID: 1721325307}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6766,7 +6774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1860857204}
   - component: {fileID: 1860857203}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Punch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6956,7 +6964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1983370961}
   - component: {fileID: 1983370962}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Healt Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7500,6 +7508,10 @@ PrefabInstance:
       value: Papaya
       objectReference: {fileID: 0}
     - target: {fileID: 4718194815826292937, guid: 9b7b2d6bcc66e3749949078297eec13d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718194815826292937, guid: 9b7b2d6bcc66e3749949078297eec13d, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -7523,6 +7535,10 @@ PrefabInstance:
     - target: {fileID: 2488880884709677112, guid: e225bc0e0919cb2478f6fd3c7efd8979, type: 3}
       propertyPath: m_Name
       value: Coconut
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488880884709677112, guid: e225bc0e0919cb2478f6fd3c7efd8979, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2488880884709677112, guid: e225bc0e0919cb2478f6fd3c7efd8979, type: 3}
       propertyPath: m_IsActive
@@ -7662,6 +7678,10 @@ PrefabInstance:
       value: Banana
       objectReference: {fileID: 0}
     - target: {fileID: 8611982216582111686, guid: 6afacda2fd44b2f4496fff733b1e6f0b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611982216582111686, guid: 6afacda2fd44b2f4496fff733b1e6f0b, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -7685,6 +7705,10 @@ PrefabInstance:
     - target: {fileID: 489973238211665290, guid: 280406faaea58144986377701c15b84a, type: 3}
       propertyPath: m_Name
       value: ShootPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 489973238211665290, guid: 280406faaea58144986377701c15b84a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
       propertyPath: m_LocalPosition.x

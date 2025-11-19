@@ -27,6 +27,7 @@ public class PlayerControler : MonoBehaviour
     [Header("Raycast")]
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
+    private Color Color = Color.red;
 
     protected bool isRun;
     private bool isClimb;
