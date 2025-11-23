@@ -23,7 +23,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private int jumpForce;
     [SerializeField] private int maxJump; 
     private int jumpCount;
-    private Rigidbody rb;
+    private Rigidbody rb; 
     protected bool canJump;
 
     [Header("Climb Player")]
