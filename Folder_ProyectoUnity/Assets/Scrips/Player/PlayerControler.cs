@@ -15,23 +15,28 @@ public class PlayerControler : MonoBehaviour
     [Header("Movement Player")]
     [SerializeField] private float speed;
     [SerializeField] private float runSpeed;
-    [SerializeField] private float climbSpeed;
+
+    protected bool isRun;
     private float currentSpeed;
-    protected Vector2 moveInput; 
+    protected Vector2 moveInput;
 
     [Header("Jump Player")]
     [SerializeField] private int jumpForce;
+    [SerializeField] private int maxJump; 
+    private int jumpCount;
     private Rigidbody rb;
-    protected bool canJump; 
+    protected bool canJump;
 
+    [Header("Climb Player")]
+    [SerializeField] private float climbSpeed;
+    
+    private bool isClimb;
+    
     [Header("Raycast")]
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
-    private Color Color = Color.red;
 
-    protected bool isRun;
-    private bool isClimb;
-
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -48,14 +53,34 @@ public class PlayerControler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, distance, layer))
+        //LOS PODEROSOS RAYCAST
+        #region Jump
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, distance, layer);
+
+        if (isGrounded)
+        { 
+            Debug.DrawRay(transform.position, Vector3.down * distance, Color.red);
+        }
+        else
         {
-            if (canJump)
+            Debug.DrawRay(transform.position, Vector3.down * distance, Color.green);
+        }
+
+        if (isGrounded == true)
+        {
+            jumpCount = 0;
+        }
+
+        if (canJump)
+        {
+            if (isGrounded || jumpCount < maxJump)
             {
-                rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                jumpCount++;
                 canJump = false;
             }
         }
+        #endregion
 
         if (isClimb)
         {
