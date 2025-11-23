@@ -17,7 +17,6 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float runSpeed;
 
     protected bool isRun;
-    private float currentSpeed;
     protected Vector2 moveInput;
 
     [Header("Jump Player")]
@@ -53,6 +52,26 @@ public class PlayerControler : MonoBehaviour
 
     private void FixedUpdate()
     {
+        #region Move
+        Vector3 direccion = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+
+        float velocidadActual = isRun ? runSpeed : speed;
+
+        //para evitar el rb.linearvelocity obsoleto, lo estoy guardando en un vector
+        //es la velocidad actual de rb
+        Vector3 currentVelocity = rb.linearVelocity;
+
+        //velocidad del obj
+        Vector3 targetVelocity = direccion * velocidadActual;
+
+
+        Vector3 velocityChange = targetVelocity - new Vector3(currentVelocity.x, 0, currentVelocity.z);
+
+        rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
+        Debug.Log("Magnitud de la dirección = " + direccion.magnitude);
+        #endregion
+
         //LOS PODEROSOS RAYCAST
         #region Jump
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, distance, layer);
@@ -81,7 +100,8 @@ public class PlayerControler : MonoBehaviour
             }
         }
         #endregion
-
+        /*
+        #region Climb
         if (isClimb)
         {
             rb.linearVelocity = new Vector3(moveInput.x * climbSpeed, moveInput.y * climbSpeed, rb.linearVelocity.z);
@@ -90,18 +110,13 @@ public class PlayerControler : MonoBehaviour
         {
             rb.linearVelocity = Move();
         }
-    }
-
-    private Vector3 Move()
-    {
-        currentSpeed = isRun ? runSpeed : speed;
-        return new Vector3(moveInput.x * currentSpeed, rb.linearVelocity.y, moveInput.y * currentSpeed);
+        #endregion*/
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        Debug.Log($"Jugador {gameObject.name} moviéndose: {moveInput}");
+        Debug.Log($"Jugador {gameObject.name} moviendose: {moveInput}");
     }
 
     public void OnJump(InputAction.CallbackContext context)
