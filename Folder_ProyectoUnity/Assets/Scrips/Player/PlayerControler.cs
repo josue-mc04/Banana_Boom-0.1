@@ -16,22 +16,27 @@ public class PlayerControler : MonoBehaviour
     [Header("Movement Player")]
     [SerializeField] private float speed;
     [SerializeField] private float runSpeed;
-    [SerializeField] private float climbSpeed;
-    private float currentSpeed;
+
+    protected bool isRun;
     protected Vector2 moveInput;
 
     [Header("Jump Player")]
     [SerializeField] private int jumpForce;
-    private Rigidbody rb;
+    [SerializeField] private int maxJump; 
+    private int jumpCount;
+    private Rigidbody rb; 
     protected bool canJump;
 
+    [Header("Climb Player")]
+    [SerializeField] private float climbSpeed;
+    
+    private bool isClimb;
+    
     [Header("Raycast")]
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
 
-    protected bool isRun;
-    private bool isClimb;
-
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -56,15 +61,56 @@ public class PlayerControler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, distance, layer))
+        #region Move
+        Vector3 direccion = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+
+        float velocidadActual = isRun ? runSpeed : speed;
+
+        //para evitar el rb.linearvelocity obsoleto, lo estoy guardando en un vector
+        //es la velocidad actual de rb
+        Vector3 currentVelocity = rb.linearVelocity;
+
+        //velocidad del obj
+        Vector3 targetVelocity = direccion * velocidadActual;
+
+
+        Vector3 velocityChange = targetVelocity - new Vector3(currentVelocity.x, 0, currentVelocity.z);
+
+        rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
+        Debug.Log("Magnitud de la direcci�n = " + direccion.magnitude);
+        #endregion
+
+        //LOS PODEROSOS RAYCAST
+        #region Jump
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, distance, layer);
+
+        if (isGrounded)
+        { 
+            Debug.DrawRay(transform.position, Vector3.down * distance, Color.red);
+        }
+        else
         {
-            if (canJump)
+            Debug.DrawRay(transform.position, Vector3.down * distance, Color.green);
+        }
+
+        if (isGrounded == true)
+        {
+            jumpCount = 0;
+        }
+
+        if (canJump)
+        {
+            if (isGrounded || jumpCount < maxJump)
             {
-                rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                jumpCount++;
                 canJump = false;
             }
         }
-
+        #endregion
+        /*
+        #region Climb
         if (isClimb)
         {
             rb.linearVelocity = new Vector3(
@@ -77,44 +123,13 @@ public class PlayerControler : MonoBehaviour
         {
             rb.linearVelocity = MoveRelativeToCamera();
         }
-    }
-
-    private Vector3 MoveRelativeToCamera()
-    {
-        currentSpeed = isRun ? runSpeed : speed;
-
-        if (cameraTransform == null)
-            return new Vector3(moveInput.x * currentSpeed, rb.linearVelocity.y, moveInput.y * currentSpeed);
-
-        Vector3 camForward = cameraTransform.forward;
-        Vector3 camRight = cameraTransform.right;
-
-        camForward.y = 0f;
-        camRight.y = 0f;
-
-        camForward.Normalize();
-        camRight.Normalize();
-
-        Vector3 desiredDirection =
-            camForward * moveInput.y +
-            camRight * moveInput.x;
-
-        // Rotar player hacia donde se mueve (en base a cámara)
-        if (desiredDirection.sqrMagnitude > 0.001f)
-        {
-            Quaternion targetRot = Quaternion.LookRotation(desiredDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 15f * Time.deltaTime);
-        }
-
-        desiredDirection *= currentSpeed;
-        desiredDirection.y = rb.linearVelocity.y;
-
-        return desiredDirection;
+        #endregion*/
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+        Debug.Log($"Jugador {gameObject.name} moviendose: {moveInput}");
     }
 
     public void OnJump(InputAction.CallbackContext context)
