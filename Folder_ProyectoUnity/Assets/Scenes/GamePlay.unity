@@ -870,7 +870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &233846964
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -986,6 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d857827fd650eaa45adf8a9026670844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 0}
   _maxHealth: 50
   _deathEffect: {fileID: 0}
   hitEffect: {fileID: 0}
@@ -2611,7 +2612,7 @@ Transform:
   m_GameObject: {fileID: 860384096}
   serializedVersion: 2
   m_LocalRotation: {x: 0.16232996, y: -0.0413114, z: 0.006802346, w: 0.98584795}
-  m_LocalPosition: {x: 10.34, y: 5.799647, z: -77.259995}
+  m_LocalPosition: {x: 10.34, y: 5.2456465, z: -77.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3665,6 +3666,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 242882150}
   m_LocalEulerAnglesHint: {x: 0, y: 87.633, z: 0}
+--- !u!1 &1261584410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1261584411}
+  - component: {fileID: 1261584412}
+  m_Layer: 6
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1261584411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261584410}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1425900759}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1261584412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261584410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c07de8ce2afd945872fc127275c125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1284210635
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,7 +3891,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 340441648}
+    TrackingTarget: {fileID: 1261584411}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -3878,7 +3923,7 @@ Transform:
   m_GameObject: {fileID: 1303064191}
   serializedVersion: 2
   m_LocalRotation: {x: 0.16232996, y: -0.0413114, z: 0.0068023447, w: 0.98584795}
-  m_LocalPosition: {x: 10.34, y: 5.799647, z: -77.259995}
+  m_LocalPosition: {x: 10.34, y: 5.2456465, z: -77.63}
   m_LocalScale: {x: 1.9051, y: 1.9051, z: 1.9051}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4633,6 +4678,7 @@ Transform:
   - {fileID: 393565115}
   - {fileID: 1343171486}
   - {fileID: 894933091}
+  - {fileID: 1261584411}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1425900760
@@ -4750,6 +4796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d857827fd650eaa45adf8a9026670844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 860384099}
   _maxHealth: 50
   _deathEffect: {fileID: 0}
   hitEffect: {fileID: 0}

@@ -1,15 +1,16 @@
-using System;
-using Unity.VisualScripting;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerControler : MonoBehaviour
 {
+    [Header("References")]
+    public Transform cameraTransform; // ← aquí va la MainCamera
+
     [Header("HealthPoints")]
     [SerializeField] private float _maxHealth = 50;
     [SerializeField] private GameObject _deathEffect, hitEffect;
     private float _currentHealth;
-
     [SerializeField] private Healthbar _healthbar;
 
     [Header("Movement Player")]
@@ -17,17 +18,16 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float runSpeed;
     [SerializeField] private float climbSpeed;
     private float currentSpeed;
-    protected Vector2 moveInput; 
+    protected Vector2 moveInput;
 
     [Header("Jump Player")]
     [SerializeField] private int jumpForce;
     private Rigidbody rb;
-    protected bool canJump; 
+    protected bool canJump;
 
     [Header("Raycast")]
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
-    private Color Color = Color.red;
 
     protected bool isRun;
     private bool isClimb;
@@ -39,11 +39,19 @@ public class PlayerControler : MonoBehaviour
 
     private void Start()
     {
+        if (cameraTransform == null)
+        {
+            Camera cam = Camera.main;
+            if (cam != null)
+                cameraTransform = cam.transform;
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         _currentHealth = _maxHealth;
-        _healthbar.UpdateHealthbar(_maxHealth, _currentHealth);
+        if (_healthbar != null)
+            _healthbar.UpdateHealthbar(_maxHealth, _currentHealth);
     }
 
     private void FixedUpdate()
@@ -59,51 +67,74 @@ public class PlayerControler : MonoBehaviour
 
         if (isClimb)
         {
-            rb.linearVelocity = new Vector3(moveInput.x * climbSpeed, moveInput.y * climbSpeed, rb.linearVelocity.z);
+            rb.linearVelocity = new Vector3(
+                moveInput.x * climbSpeed,
+                moveInput.y * climbSpeed,
+                rb.linearVelocity.z
+            );
         }
         else
         {
-            rb.linearVelocity = Move();
+            rb.linearVelocity = MoveRelativeToCamera();
         }
     }
 
-    private Vector3 Move()
+    private Vector3 MoveRelativeToCamera()
     {
         currentSpeed = isRun ? runSpeed : speed;
-        return new Vector3(moveInput.x * currentSpeed, rb.linearVelocity.y, moveInput.y * currentSpeed);
+
+        if (cameraTransform == null)
+            return new Vector3(moveInput.x * currentSpeed, rb.linearVelocity.y, moveInput.y * currentSpeed);
+
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+
+        camForward.y = 0f;
+        camRight.y = 0f;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 desiredDirection =
+            camForward * moveInput.y +
+            camRight * moveInput.x;
+
+        // Rotar player hacia donde se mueve (en base a cámara)
+        if (desiredDirection.sqrMagnitude > 0.001f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(desiredDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 15f * Time.deltaTime);
+        }
+
+        desiredDirection *= currentSpeed;
+        desiredDirection.y = rb.linearVelocity.y;
+
+        return desiredDirection;
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        Debug.Log($"Jugador {gameObject.name} movi�ndose: {moveInput}");
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed)
             canJump = true;
-        Debug.Log($"Jugador {gameObject.name} saltando");
     }
 
     public void OnRun(InputAction.CallbackContext context)
     {
         isRun = context.performed;
-        Debug.Log($"Jugador {gameObject.name} corriendo: {isRun}");
     }
 
     public void Climb(bool value)
     {
         isClimb = value;
+        rb.useGravity = !value;
+
         if (value)
-        {
-            rb.useGravity = false;
             rb.linearVelocity = Vector3.zero;
-        }
-        else
-        {
-            rb.useGravity = true;
-        }
     }
 
     public void TakeDamage(float damage)
