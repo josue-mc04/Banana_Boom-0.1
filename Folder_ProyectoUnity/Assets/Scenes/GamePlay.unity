@@ -6038,6 +6038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bd8795f48ae6049af5d9a623a0bb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Jumpforce: 0
 --- !u!1 &1657682479
 GameObject:
   m_ObjectHideFlags: 0
@@ -6705,6 +6706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1815745294}
   - component: {fileID: 1815745293}
+  - component: {fileID: 1815745297}
   - component: {fileID: 1815745292}
   - component: {fileID: 1815745291}
   - component: {fileID: 1815745296}
@@ -6831,6 +6833,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1815745297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815745288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baab8994af816a3469394f99ebe90fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {fileID: 387971700}
+  - {fileID: 1560727640}
+  - {fileID: 1043327579}
+  player: {fileID: 1425900759}
+  detectRange: 6
+  pushForce: 20
 --- !u!1 &1831050356
 GameObject:
   m_ObjectHideFlags: 0
@@ -7562,6 +7583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bd8795f48ae6049af5d9a623a0bb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Jumpforce: 0
 --- !u!65 &2085559818
 BoxCollider:
   m_ObjectHideFlags: 0
