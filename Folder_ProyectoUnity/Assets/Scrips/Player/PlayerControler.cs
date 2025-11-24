@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerControler : MonoBehaviour
 {
     [Header("References")]
-    public Transform cameraTransform; // ← aquí va la MainCamera
+    public Transform cameraTransform; //aquí va la MainCamera
 
     [Header("HealthPoints")]
     [SerializeField] private float _maxHealth = 50;
@@ -78,7 +78,7 @@ public class PlayerControler : MonoBehaviour
 
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
-        Debug.Log("Magnitud de la direcci�n = " + direccion.magnitude);
+        Debug.Log("Magnitud de la direccion = " + direccion.magnitude);
         #endregion
 
         //LOS PODEROSOS RAYCAST
