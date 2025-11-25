@@ -48,8 +48,11 @@ public class GorillaAI : MonoBehaviour
 
         if (chasing == true)
         {
-            agent.SetDestination(player.position);
-            return; //deja de patrullar
+            if (Vector3.Distance(agent.destination, player.position) > 1f)
+            {
+                agent.SetDestination(player.position);
+            }
+            return;
         }
         #endregion
 
