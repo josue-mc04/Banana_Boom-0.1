@@ -78,15 +78,43 @@ public class GorillaAI : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+
+        if(collision.gameObject.GetComponent<IThrowAble>() != null)
+        {
+            collision.gameObject.GetComponent<IThrowAble>().Throw();
+
+            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+
+
+            Vector3 pushDir = (collision.transform.position - transform.position);
+
+            pushDir.y = 0;
+            pushDir = pushDir.normalized;
+
+            Vector3 finalDir = (pushDir + Vector3.up * 2f).normalized;
+
+            rb.AddForce(finalDir * pushForce, ForceMode.Impulse);
+
+        }
+
+        /*
         if (collision.gameObject.CompareTag("Player"))
         {
             Rigidbody player = collision.gameObject.GetComponent<Rigidbody>();
             if (player != null)
             {
                 //dirección desde el gorila hacia el jugador
-                Vector3 pushDir = (collision.transform.position - transform.position).normalized;
-                player.AddForce(pushDir * pushForce, ForceMode.Impulse);
+                //Vector3 ThrowDir = 
+
+                Vector3 pushDir = (collision.transform.position - transform.position);
+
+                pushDir.y = 0;
+                pushDir = pushDir.normalized;
+
+                Vector3 finalDir = (pushDir + Vector3.up * 0.1f).normalized;
+
+                player.AddForce(finalDir * pushForce, ForceMode.Impulse);
             }
-        }
+        }*/
     }
 }

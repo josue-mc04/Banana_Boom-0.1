@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerControler : MonoBehaviour
+public class PlayerControler : MonoBehaviour, IThrowAble
 {
     [Header("References")]
     public Transform cameraTransform; //aquí va la MainCamera
@@ -36,7 +36,9 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
 
-    
+
+    public bool isKnockback;
+    public float knockbackDuration;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -66,17 +68,16 @@ public class PlayerControler : MonoBehaviour
 
         float velocidadActual = isRun ? runSpeed : speed;
 
-        //para evitar el rb.linearvelocity obsoleto, lo estoy guardando en un vector
-        //es la velocidad actual de rb
-        Vector3 currentVelocity = rb.linearVelocity;
 
-        //velocidad del obj
-        Vector3 targetVelocity = direccion * velocidadActual;
+        Vector3 localDir = transform.TransformDirection(direccion);
+        localDir *= speed;  
 
+        Vector3 currentDir = rb.linearVelocity;
 
-        Vector3 velocityChange = targetVelocity - new Vector3(currentVelocity.x, 0, currentVelocity.z);
+        localDir.y = currentDir.y;  
 
-        rb.AddForce(velocityChange, ForceMode.VelocityChange);
+        if(isKnockback == false)
+            rb.linearVelocity = localDir;
 
         Debug.Log("Magnitud de la direccion = " + direccion.magnitude);
         #endregion
@@ -124,6 +125,28 @@ public class PlayerControler : MonoBehaviour
             rb.linearVelocity = MoveRelativeToCamera();
         }
         #endregion*/
+
+
+        transform.forward = GetLookDir();
+    }
+
+    public void Throw()
+    {
+        isKnockback = true;
+        Invoke("DisableKnockback", knockbackDuration);
+        //corrutina apra desactivar el isknoca
+    }
+    public void DisableKnockback()
+    {
+        isKnockback = false;
+    }
+    public Vector3 GetLookDir()
+    {
+        Vector3 LookDir = (transform.position- cameraTransform.position).normalized;
+
+        LookDir.y = 0;
+
+        return LookDir;
     }
 
     public void OnMove(InputAction.CallbackContext context)
