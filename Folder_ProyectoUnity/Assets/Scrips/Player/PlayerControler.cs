@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerControler : MonoBehaviour, IThrowAble
 {
     [Header("References")]
-    public Transform cameraTransform; //aquí va la MainCamera
+    public Transform cameraTransform;
 
     [Header("HealthPoints")]
     [SerializeField] private float _maxHealth = 50;
@@ -14,31 +15,37 @@ public class PlayerControler : MonoBehaviour, IThrowAble
     [SerializeField] private Healthbar _healthbar;
 
     [Header("Movement Player")]
-    [SerializeField] private float speed;
-    [SerializeField] private float runSpeed;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float runSpeed = 8f;
 
     protected bool isRun;
     protected Vector2 moveInput;
 
     [Header("Jump Player")]
-    [SerializeField] private int jumpForce;
-    [SerializeField] private int maxJump; 
+    [SerializeField] private float jumpForce = 7f; 
+    [SerializeField] private int maxJump = 2;
     private int jumpCount;
-    private Rigidbody rb; 
+    private Rigidbody rb;
     protected bool canJump;
 
     [Header("Climb Player")]
     [SerializeField] private float climbSpeed;
-    
+
     private bool isClimb;
-    
+
     [Header("Raycast")]
-    [SerializeField] private float distance;
+    [SerializeField] private float distance = 0.1f;
     [SerializeField] private LayerMask layer;
 
+    [Header("Physics")]
+    [SerializeField] private float normalMass = 1f;
+    [SerializeField] private float airMass = 1.5f; 
 
     public bool isKnockback;
     public float knockbackDuration;
+
+    private bool isGrounded;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,7 +57,9 @@ public class PlayerControler : MonoBehaviour, IThrowAble
         {
             Camera cam = Camera.main;
             if (cam != null)
+            {
                 cameraTransform = cam.transform;
+            }
         }
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -58,74 +67,72 @@ public class PlayerControler : MonoBehaviour, IThrowAble
 
         _currentHealth = _maxHealth;
         if (_healthbar != null)
+        {
             _healthbar.UpdateHealthbar(_maxHealth, _currentHealth);
+        }
+
+        rb.mass = normalMass;
     }
 
     private void FixedUpdate()
     {
         #region Move
-        Vector3 direccion = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+        if (isGrounded && !isKnockback)
+        {
+            Vector3 direccion = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+            float velocidadActual = isRun ? runSpeed : speed;
 
-        float velocidadActual = isRun ? runSpeed : speed;
+            Vector3 localDir = transform.TransformDirection(direccion);
+            localDir *= velocidadActual;
 
+            Vector3 currentVelocity = rb.linearVelocity;
+            localDir.y = currentVelocity.y;
 
-        Vector3 localDir = transform.TransformDirection(direccion);
-        localDir *= speed;  
-
-        Vector3 currentDir = rb.linearVelocity;
-
-        localDir.y = currentDir.y;  
-
-        if(isKnockback == false)
             rb.linearVelocity = localDir;
+        }
+        else if (!isKnockback)
+        {
+            Vector3 direccion = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+            Vector3 localDir = transform.TransformDirection(direccion);
+            localDir *= speed * 0.5f; 
 
-        Debug.Log("Magnitud de la direccion = " + direccion.magnitude);
+            rb.AddForce(localDir * 10f, ForceMode.Force);
+        }
         #endregion
 
-        //LOS PODEROSOS RAYCAST
-        #region Jump
-        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, distance, layer);
+        #region Ground Check
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, distance, layer);
 
         if (isGrounded)
-        { 
+        {
             Debug.DrawRay(transform.position, Vector3.down * distance, Color.red);
+            rb.mass = normalMass;
         }
         else
         {
             Debug.DrawRay(transform.position, Vector3.down * distance, Color.green);
+            rb.mass = airMass;
         }
 
-        if (isGrounded == true)
+        if (isGrounded)
         {
             jumpCount = 0;
         }
+        #endregion
 
+        #region Jump
         if (canJump)
         {
             if (isGrounded || jumpCount < maxJump)
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+
                 jumpCount++;
                 canJump = false;
             }
         }
         #endregion
-        /*
-        #region Climb
-        if (isClimb)
-        {
-            rb.linearVelocity = new Vector3(
-                moveInput.x * climbSpeed,
-                moveInput.y * climbSpeed,
-                rb.linearVelocity.z
-            );
-        }
-        else
-        {
-            rb.linearVelocity = MoveRelativeToCamera();
-        }
-        #endregion*/
-
 
         transform.forward = GetLookDir();
     }
@@ -134,25 +141,23 @@ public class PlayerControler : MonoBehaviour, IThrowAble
     {
         isKnockback = true;
         Invoke("DisableKnockback", knockbackDuration);
-        //corrutina apra desactivar el isknoca
     }
+
     public void DisableKnockback()
     {
         isKnockback = false;
     }
+
     public Vector3 GetLookDir()
     {
-        Vector3 LookDir = (transform.position- cameraTransform.position).normalized;
-
+        Vector3 LookDir = (transform.position - cameraTransform.position).normalized;
         LookDir.y = 0;
-
         return LookDir;
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        Debug.Log($"Jugador {gameObject.name} moviendose: {moveInput}");
     }
 
     public void OnJump(InputAction.CallbackContext context)
