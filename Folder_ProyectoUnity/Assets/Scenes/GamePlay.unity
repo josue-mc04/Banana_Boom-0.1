@@ -7631,10 +7631,12 @@ MonoBehaviour:
   - {fileID: 1416452367}
   - {fileID: 789927493}
   - {fileID: 527628452}
-  player: {fileID: 1425900759}
-  detectRange: 5
+  player: {fileID: 0}
+  detectRange: 10
   pushForce: 20
-  allPlayers: []
+  allPlayers:
+  - {fileID: 1425900759}
+  - {fileID: 233846969}
 --- !u!195 &1815745298
 NavMeshAgent:
   m_ObjectHideFlags: 0

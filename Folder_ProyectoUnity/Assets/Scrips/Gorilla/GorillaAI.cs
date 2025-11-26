@@ -36,12 +36,12 @@ public class GorillaAI : MonoBehaviour
     {
         UpdateQueueSystem();
 
-        // Verificar si tenemos un jugador para perseguir
+        //verificar si tenemos un jugador para perseguir
         if (player != null)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-            // Persecución
+            //persecucion
             if (distanceToPlayer < detectRange)
             {
                 chasing = true;
@@ -50,7 +50,7 @@ public class GorillaAI : MonoBehaviour
             else
             {
                 chasing = false;
-                player = null; // El jugador se alejó demasiado
+                player = null; //el jugador se alejo demasiado
             }
         }
         else
@@ -58,7 +58,7 @@ public class GorillaAI : MonoBehaviour
             chasing = false;
         }
 
-        // Si no estamos persiguiendo, patrullar
+        //Si no estamos persiguiendo, patrullar
         if (!chasing)
         {
             Patrol();
@@ -84,7 +84,7 @@ public class GorillaAI : MonoBehaviour
 
     private void UpdateQueueSystem()
     {
-        // Revisar jugadores
+        //Revisar jugadores
         for (int i = 0; i < allPlayers.Count; i++)
         {
             Transform jugador = allPlayers[i];
@@ -93,10 +93,10 @@ public class GorillaAI : MonoBehaviour
             {
                 float distancia = Vector3.Distance(transform.position, jugador.position);
 
-                // Si el jugador está cerca
+                //Si en caso esta cerca
                 if (distancia < detectRange)
                 {
-                    // Evitar duplicados
+                    //evita duplicados
                     if (!QueueHas(jugador))
                     {
                         persecutionQueue.Enqueue(jugador);
@@ -105,7 +105,7 @@ public class GorillaAI : MonoBehaviour
             }
         }
 
-        // Si no hay jugador actual pero sí en la cola
+        //si no hay jugador actual pero si en la cola
         if (player == null && !persecutionQueue.IsEmpty())
         {
             player = persecutionQueue.Dequeue();
@@ -117,12 +117,9 @@ public class GorillaAI : MonoBehaviour
     {
         if (points.Count == 0) return;
 
-        // Verificar si hemos llegado al punto actual
+        //verificar si hemos llegado al punto actual
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
-            // Esperar un momento antes de pasar al siguiente punto (opcional)
-            // yield return new WaitForSeconds(1f);
-
             currentPoint++;
 
             if (currentPoint >= points.Count)
