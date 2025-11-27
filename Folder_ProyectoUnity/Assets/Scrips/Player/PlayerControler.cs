@@ -134,6 +134,11 @@ public class PlayerControler : MonoBehaviour, IThrowAble
         }
         #endregion
 
+        if (rb.linearVelocity.y < 0)
+        {
+            rb.linearVelocity += new Vector3(0,-25.0f,0) * Time.deltaTime;
+        }
+
         transform.forward = GetLookDir();
     }
 
