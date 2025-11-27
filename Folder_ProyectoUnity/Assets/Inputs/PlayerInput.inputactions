@@ -204,7 +204,7 @@
                 {
                     "name": "",
                     "id": "f88e3b16-6866-483e-bbec-84d624f0c60d",
-                    "path": "<Pointer>/delta",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardAWSD&&Mouse",
