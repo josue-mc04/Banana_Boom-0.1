@@ -1134,8 +1134,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233846962}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 3.8700001, z: 76.1}
+  m_LocalRotation: {x: -0, y: -0.99294996, z: -0, w: 0.11853431}
+  m_LocalPosition: {x: 10.078497, y: 3.8700001, z: 76.54625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1145,7 +1145,7 @@ Transform:
   - {fileID: 730900458}
   - {fileID: 1438304676}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -166.385, z: 0}
 --- !u!1 &242882149
 GameObject:
   m_ObjectHideFlags: 0
@@ -3111,8 +3111,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860384096}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16232996, y: -0.0413114, z: 0.006802346, w: 0.98584795}
-  m_LocalPosition: {x: -5.24, y: 34.74965, z: -48.07974}
+  m_LocalRotation: {x: 0.1521234, y: -0.0000000022615512, z: 3.480861e-10, w: 0.98836154}
+  m_LocalPosition: {x: 9.26, y: 6.327529, z: -76.73858}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4416,7 +4416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1303064194}
   - component: {fileID: 1303064193}
-  - component: {fileID: 1303064192}
+  - component: {fileID: 1303064200}
   - component: {fileID: 1303064198}
   - component: {fileID: 1303064197}
   - component: {fileID: 1303064196}
@@ -4429,69 +4429,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1303064192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303064191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b5d7c088409d9a40b7b09aa707777f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetOffset: {x: 0.34, y: -1.03, z: 3.58}
-  TrackerSettings:
-    BindingMode: 4
-    PositionDamping: {x: 1, y: 1, z: 1}
-    AngularDampingMode: 0
-    RotationDamping: {x: 1, y: 1, z: 1}
-    QuaternionDamping: 1
-  OrbitStyle: 0
-  Radius: 8
-  Orbits:
-    Top:
-      Radius: 2
-      Height: 5
-    Center:
-      Radius: 4
-      Height: 2.25
-    Bottom:
-      Radius: 2.5
-      Height: 0.1
-    SplineCurvature: 0.5
-  RecenteringTarget: 2
-  HorizontalAxis:
-    Value: 0
-    Center: 0
-    Range: {x: -180, y: 180}
-    Wrap: 1
-    Recentering:
-      Enabled: 0
-      Wait: 1
-      Time: 2
-    Restrictions: 0
-  VerticalAxis:
-    Value: 17.5
-    Center: 17.5
-    Range: {x: -10, y: 45}
-    Wrap: 0
-    Recentering:
-      Enabled: 0
-      Wait: 1
-      Time: 2
-    Restrictions: 0
-  RadialAxis:
-    Value: 1
-    Center: 1
-    Range: {x: 1, y: 1}
-    Wrap: 0
-    Recentering:
-      Enabled: 0
-      Wait: 1
-      Time: 2
-    Restrictions: 0
 --- !u!114 &1303064193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4543,8 +4480,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303064191}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16232996, y: -0.0413114, z: 0.0068023447, w: 0.98584795}
-  m_LocalPosition: {x: -5.24, y: 34.74965, z: -48.07974}
+  m_LocalRotation: {x: 0.1521234, y: -0.0000000022615512, z: 3.4808606e-10, w: 0.98836154}
+  m_LocalPosition: {x: 9.26, y: 6.327529, z: -76.73858}
   m_LocalScale: {x: 1.9051, y: 1.9051, z: 1.9051}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4585,11 +4522,11 @@ MonoBehaviour:
   m_ControllerManager:
     Controllers:
     - Name: Look Orbit X
-      Owner: {fileID: 1303064192}
+      Owner: {fileID: 1303064200}
       Enabled: 1
       Input:
         InputAction: {fileID: -9165074412512988270, guid: ec171752118b70547bc5e1c105ad36bf, type: 3}
-        Gain: 1
+        Gain: 10
         LegacyInput: 
         LegacyGain: 1
         CancelDeltaTime: 0
@@ -4598,11 +4535,11 @@ MonoBehaviour:
         AccelTime: 0.2
         DecelTime: 0.2
     - Name: Look Orbit Y
-      Owner: {fileID: 1303064192}
+      Owner: {fileID: 1303064200}
       Enabled: 1
       Input:
         InputAction: {fileID: -9165074412512988270, guid: ec171752118b70547bc5e1c105ad36bf, type: 3}
-        Gain: -1
+        Gain: 10
         LegacyInput: 
         LegacyGain: 1
         CancelDeltaTime: 0
@@ -4611,11 +4548,11 @@ MonoBehaviour:
         AccelTime: 0.2
         DecelTime: 0.2
     - Name: Orbit Scale
-      Owner: {fileID: 1303064192}
+      Owner: {fileID: 1303064200}
       Enabled: 1
       Input:
-        InputAction: {fileID: -9165074412512988270, guid: ec171752118b70547bc5e1c105ad36bf, type: 3}
-        Gain: -1
+        InputAction: {fileID: -5788343743622302493, guid: ec171752118b70547bc5e1c105ad36bf, type: 3}
+        Gain: 3
         LegacyInput: 
         LegacyGain: 1
         CancelDeltaTime: 0
@@ -4708,6 +4645,69 @@ MonoBehaviour:
     FrequencyGain: 1
     Duration: 1
     m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &1303064200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303064191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5d7c088409d9a40b7b09aa707777f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetOffset: {x: 0, y: 0, z: 0}
+  TrackerSettings:
+    BindingMode: 4
+    PositionDamping: {x: 1, y: 1, z: 1}
+    AngularDampingMode: 0
+    RotationDamping: {x: 1, y: 1, z: 1}
+    QuaternionDamping: 1
+  OrbitStyle: 0
+  Radius: 5
+  Orbits:
+    Top:
+      Radius: 2
+      Height: 5
+    Center:
+      Radius: 4
+      Height: 2.25
+    Bottom:
+      Radius: 2.5
+      Height: 0.1
+    SplineCurvature: 0.5
+  RecenteringTarget: 2
+  HorizontalAxis:
+    Value: 0
+    Center: 0
+    Range: {x: -180, y: 180}
+    Wrap: 1
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
+  VerticalAxis:
+    Value: 17.5
+    Center: 17.5
+    Range: {x: -10, y: 45}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
+  RadialAxis:
+    Value: 1
+    Center: 1
+    Range: {x: 1, y: 1}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
 --- !u!1 &1317380102
 GameObject:
   m_ObjectHideFlags: 0
@@ -5008,19 +5008,67 @@ MonoBehaviour:
     m_ActionId: d7e73ecb-32c0-43d7-8a28-260474da0097
     m_ActionName: 'Player1/Run[/Keyboard/shift]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 894933090}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
+        m_MethodName: OnPreviousWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0814aaa5-e479-4c86-a620-beaf4945f533
     m_ActionName: 'Player1/PreviousWeapon[/Keyboard/q]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 894933090}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
+        m_MethodName: OnNextWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4767fa25-ac35-4899-93ec-65b79833c52e
     m_ActionName: 'Player1/NextWeapon[/Keyboard/e]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 894933090}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
+        m_MethodName: OnFireWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 29580516-ca3a-4e05-bd6d-9c1ac022a153
     m_ActionName: 'Player1/FireWeapon[/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 894933090}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
+        m_MethodName: OnReloadWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 53cb3b61-1250-4db6-b09e-31f2dc67f114
     m_ActionName: 'Player1/ReloadWeapon[/Keyboard/r]'
   - m_PersistentCalls:
@@ -5036,9 +5084,41 @@ MonoBehaviour:
     m_ActionId: a7a71cb7-acdd-4cea-b602-0a7248cd6a1c
     m_ActionName: 'Player2/Run[/XInputControllerWindows/buttonEast]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -9165074412512988270, guid: ec171752118b70547bc5e1c105ad36bf, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 198395c2-1d5d-4d4c-bd54-8b6b77f5ec77
     m_ActionName: 'Player1/Look[/XInputControllerWindows/rightStick]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3d6c27b2-96b6-4d84-90dd-51e221bf7334
+    m_ActionName: Player2/PreviousWeapon
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4374d2a5-1ba7-4302-a380-91d32cdd8996
+    m_ActionName: Player2/NextWeapon
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d7f61981-2f23-4292-9e99-f9f5919fc4d7
+    m_ActionName: Player2/FireWeapon
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d6edad1d-141d-47ab-bde5-39ec753682d0
+    m_ActionName: Player2/ReloadWeapon
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b25e6c8e-b20b-4c59-a595-91c80029ed7b
+    m_ActionName: Player2/Look
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: KeyboardAWSD&&Mouse
   m_DefaultActionMap: Player1
@@ -5278,7 +5358,7 @@ Transform:
   m_GameObject: {fileID: 1425900758}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.58, y: 32.82, z: -44.4}
+  m_LocalPosition: {x: 9.26, y: 4.27, z: -72.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -204,10 +204,10 @@
                 {
                     "name": "",
                     "id": "f88e3b16-6866-483e-bbec-84d624f0c60d",
-                    "path": "<Gamepad>/rightStick",
+                    "path": "<Pointer>/delta",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";MandoxdASDaqwedsa",
+                    "groups": ";KeyboardAWSD&&Mouse",
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -220,9 +220,9 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "6ec5e438-a66e-493f-b9c5-cc158e14bf15",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -244,6 +244,51 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PreviousWeapon",
+                    "type": "Button",
+                    "id": "3d6c27b2-96b6-4d84-90dd-51e221bf7334",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NextWeapon",
+                    "type": "Button",
+                    "id": "4374d2a5-1ba7-4302-a380-91d32cdd8996",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FireWeapon",
+                    "type": "Button",
+                    "id": "d7f61981-2f23-4292-9e99-f9f5919fc4d7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ReloadWeapon",
+                    "type": "Button",
+                    "id": "d6edad1d-141d-47ab-bde5-39ec753682d0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "b25e6c8e-b20b-4c59-a595-91c80029ed7b",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -283,7 +328,7 @@
                 {
                     "name": "left",
                     "id": "dcf09cf6-1e12-4cd5-8005-5d0bb54e0a26",
-                    "path": "<Gamepad>/leftStick/left",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "MandoxdASDaqwedsa",
@@ -294,7 +339,7 @@
                 {
                     "name": "right",
                     "id": "cba8cf3b-69c7-41db-ab8a-0b30504321c5",
-                    "path": "<Gamepad>/leftStick/right",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "MandoxdASDaqwedsa",
@@ -305,7 +350,7 @@
                 {
                     "name": "",
                     "id": "f590cf24-8ce1-4f0b-918a-a1018258574f",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": ";MandoxdASDaqwedsa",
@@ -316,11 +361,66 @@
                 {
                     "name": "",
                     "id": "45bd9853-7325-47c0-88ad-dc20030d343c",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": ";MandoxdASDaqwedsa",
                     "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b3f5de6-9fc6-480c-8e19-477ed55db2aa",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MandoxdASDaqwedsa",
+                    "action": "PreviousWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e9b9b7ab-2106-4aaf-a45e-99f36cb55b68",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MandoxdASDaqwedsa",
+                    "action": "NextWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d6eb941-84a9-4536-b260-c395200e709b",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MandoxdASDaqwedsa",
+                    "action": "FireWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf23c4bd-ff8d-4688-84c3-1e134708d4ae",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MandoxdASDaqwedsa",
+                    "action": "ReloadWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "66cb3285-6a3f-4a10-8090-55f4164ddc3f",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MandoxdASDaqwedsa",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
