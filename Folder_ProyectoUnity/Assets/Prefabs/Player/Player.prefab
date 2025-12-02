@@ -1045,8 +1045,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 1721563427762504166}
   _maxHealth: 50
-  _deathEffect: {fileID: 0}
-  hitEffect: {fileID: 0}
+  _deathEffect: {fileID: 5880797563127281583, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
+  hitEffect: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
   _healthbar: {fileID: 3976309618532804748}
   speed: 8
   runSpeed: 15
@@ -1061,6 +1061,7 @@ MonoBehaviour:
   airMass: 5
   isKnockback: 0
   knockbackDuration: 1
+  lookSensitivity: 3
   OnMoveEvent:
     m_PersistentCalls:
       m_Calls: []
