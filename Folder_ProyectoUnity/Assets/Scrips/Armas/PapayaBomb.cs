@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 public class PapayaBomb : Weapon
 {
     [Header("Prefabs y Puntos")]
@@ -33,7 +33,7 @@ public class PapayaBomb : Weapon
         StartCoroutine(MovePapayaCurve(papaya));
     }
 
-    private System.Collections.IEnumerator MovePapayaCurve(GameObject papaya)
+    private IEnumerator MovePapayaCurve(GameObject papaya)
     {
         Vector3 startPos = shootPoint.position;
         Vector3 endPos = shootPoint.position + shootPoint.forward * distance;

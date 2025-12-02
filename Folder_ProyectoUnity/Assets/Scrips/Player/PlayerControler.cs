@@ -25,7 +25,7 @@ public class PlayerControler : MonoBehaviour, IThrowAble
     [SerializeField] private int maxJump = 2;
     private int jumpCount;
     private Rigidbody rb;
-    protected bool canJump;
+    public bool canJump;
 
     [Header("Climb Player")]
     [SerializeField] private float climbSpeed;
@@ -42,6 +42,7 @@ public class PlayerControler : MonoBehaviour, IThrowAble
     public bool isKnockback;
     public float knockbackDuration;
     private bool isGrounded;
+    private RaycastHit hit;
 
     [Header("Look / Camera")]
     [SerializeField] private float lookSensitivity = 3f;
@@ -101,7 +102,22 @@ public class PlayerControler : MonoBehaviour, IThrowAble
         #endregion
 
         #region Ground Check
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, distance, layer);
+        if(Physics.Raycast(transform.position, Vector3.down,out hit ,distance, layer))
+        {
+            if (hit.collider.gameObject.CompareTag("Jumpers"))
+            {
+                canJump = true;
+            }
+            else
+            {
+
+                isGrounded = true;
+            }
+        }
+        else
+        {
+            isGrounded = false;
+        }
         Debug.DrawRay(transform.position, Vector3.down * distance, isGrounded ? Color.red : Color.green);
 
         rb.mass = isGrounded ? normalMass : airMass;

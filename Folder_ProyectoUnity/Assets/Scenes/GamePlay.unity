@@ -3626,7 +3626,7 @@ GameObject:
   - component: {fileID: 1618590148}
   - component: {fileID: 1618590147}
   - component: {fileID: 1618590151}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Jumpers
   m_TagString: Jumpers
   m_Icon: {fileID: 0}
@@ -4132,7 +4132,6 @@ GameObject:
   - component: {fileID: 1815745292}
   - component: {fileID: 1815745291}
   - component: {fileID: 1815745298}
-  - component: {fileID: 1815745299}
   m_Layer: 0
   m_Name: Gorilla
   m_TagString: Untagged
@@ -4250,9 +4249,7 @@ MonoBehaviour:
   player: {fileID: 0}
   detectRange: 10
   pushForce: 20
-  allPlayers:
-  - {fileID: 0}
-  - {fileID: 0}
+  allPlayers: []
 --- !u!195 &1815745298
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4275,33 +4272,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!54 &1815745299
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815745288}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1834773198
 GameObject:
   m_ObjectHideFlags: 0
@@ -4467,7 +4437,7 @@ GameObject:
   - component: {fileID: 2085559814}
   - component: {fileID: 2085559813}
   - component: {fileID: 2085559817}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Jumper
   m_TagString: Jumpers
   m_Icon: {fileID: 0}
@@ -4575,7 +4545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bd8795f48ae6049af5d9a623a0bb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jumpforce: 0
+  Jumpforce: 1000
 --- !u!1 &2145723671
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
+using System;
 
 public class GorillaAI : MonoBehaviour
 {
@@ -20,6 +21,21 @@ public class GorillaAI : MonoBehaviour
     [Header("Sistema de Cola")]
     [SerializeField] private List<Transform> allPlayers;
     private QueuePersecution<Transform> persecutionQueue;
+    private void OnEnable()
+    {
+        PlayerInitialScript.transPlayer += GetPlayer;
+        Debug.Log("Se suscribio");
+    }
+    private void OnDisable()
+    {
+        Debug.Log("Se desuscribio");
+        PlayerInitialScript.transPlayer -= GetPlayer;
+    }
+    private void GetPlayer(Transform transform)
+    {
+        Debug.Log("ayudaaaaaaaaa");
+        allPlayers.Add(transform);
+    }
 
     private void Start()
     {
