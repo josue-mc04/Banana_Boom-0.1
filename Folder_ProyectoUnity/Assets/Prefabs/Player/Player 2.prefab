@@ -1052,6 +1052,7 @@ MonoBehaviour:
   runSpeed: 15
   jumpForce: 10
   maxJump: 2
+  canJump: 0
   climbSpeed: 5
   distance: 1
   layer:
@@ -1334,7 +1335,7 @@ MonoBehaviour:
     m_ActionId: 04661b12-6235-400b-8ddf-07096c4e6bf5
     m_ActionName: 'Player/Look[/XInputControllerWindows/leftStick]'
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&&Mouse
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 4585903275851831560}

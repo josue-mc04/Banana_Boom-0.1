@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
-public class PlayerControler : MonoBehaviour, IThrowAble
+public class PlayerControler : MonoBehaviour
 {
     [Header("References")]
     public Transform cameraTransform;
@@ -17,30 +17,27 @@ public class PlayerControler : MonoBehaviour, IThrowAble
     [Header("Movement Player")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float runSpeed = 8f;
-    protected bool isRun;
-    protected Vector2 moveInput;
+    private bool isRun;
+    private Vector2 moveInput;
 
     [Header("Jump Player")]
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private int maxJump = 2;
     private int jumpCount;
     private Rigidbody rb;
-    public bool canJump;
+    private bool canJump;
 
-    [Header("Climb Player")]
-    [SerializeField] private float climbSpeed;
-    private bool isClimb;
-
-    [Header("Raycast")]
-    [SerializeField] private float distance = 0.1f;
+    [Header("Raycast Ground Check")]
+    [SerializeField] private float distance = 0.3f;
     [SerializeField] private LayerMask layer;
 
     [Header("Physics")]
     [SerializeField] private float normalMass = 1f;
     [SerializeField] private float airMass = 1.5f;
 
-    public bool isKnockback;
+    private bool isKnockback;
     public float knockbackDuration;
+
     private bool isGrounded;
     private RaycastHit hit;
 
@@ -49,12 +46,8 @@ public class PlayerControler : MonoBehaviour, IThrowAble
     private Vector2 lookInput;
     private float rotX;
 
-    [Header("Unity Events")]
-    public UnityEvent<Vector2> OnMoveEvent;
-    public UnityEvent OnJumpEvent;
-    public UnityEvent<Vector2> OnLookEvent;
-    public UnityEvent<bool> OnClimbEvent;
-    public UnityEvent OnDieEvent;
+    [Header("Unity Event")]
+    public UnityEvent OnDieEvent; // ÚNICO EVENTO ACTIVO
 
     private void Awake()
     {
@@ -74,59 +67,81 @@ public class PlayerControler : MonoBehaviour, IThrowAble
         Cursor.visible = false;
 
         _currentHealth = _maxHealth;
-        if (_healthbar != null)
-            _healthbar.UpdateHealthbar(_maxHealth, _currentHealth);
+        _healthbar?.UpdateHealthbar(_maxHealth, _currentHealth);
 
         rb.mass = normalMass;
     }
 
     private void FixedUpdate()
     {
-        #region Move
-        if (isGrounded && !isKnockback)
-        {
-            Vector3 direccion = new Vector3(moveInput.x, 0, moveInput.y).normalized;
-            float velocidadActual = isRun ? runSpeed : speed;
+        GroundCheck();
 
-            Vector3 localDir = transform.TransformDirection(direccion) * velocidadActual;
-            Vector3 currentVelocity = rb.linearVelocity;
-            localDir.y = currentVelocity.y;
-            rb.linearVelocity = localDir;
-        }
-        else if (!isKnockback)
-        {
-            Vector3 direccion = new Vector3(moveInput.x, 0, moveInput.y).normalized;
-            Vector3 localDir = transform.TransformDirection(direccion) * (speed * 0.5f);
-            rb.AddForce(localDir * 10f, ForceMode.Force);
-        }
-        #endregion
+        if (!isKnockback)
+            MovePlayer();
 
-        #region Ground Check
-        if(Physics.Raycast(transform.position, Vector3.down,out hit ,distance, layer))
+        HandleJump();
+
+        if (rb.linearVelocity.y < 0)
+            rb.AddForce(Vector3.down * 25f * Time.deltaTime, ForceMode.Acceleration);
+    }
+
+    private void LateUpdate()
+    {
+        rotX -= lookInput.y * lookSensitivity;
+        rotX = Mathf.Clamp(rotX, -80f, 80f);
+
+        if (cameraTransform != null)
+            cameraTransform.localRotation = Quaternion.Euler(rotX, 0, 0);
+
+        transform.Rotate(Vector3.up * lookInput.x * lookSensitivity);
+    }
+
+    // ---------------------- MOVEMENT ----------------------
+    void MovePlayer()
+    {
+        Vector3 inputDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+
+        if (inputDir.magnitude > 0.1f)
         {
-            if (hit.collider.gameObject.CompareTag("Jumpers"))
+            float currentSpeed = isRun ? runSpeed : speed;
+            Vector3 worldDir = transform.TransformDirection(inputDir) * currentSpeed;
+
+            rb.linearVelocity = new Vector3(worldDir.x, rb.linearVelocity.y, worldDir.z);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+        }
+    }
+
+    // ---------------------- GROUND CHECK ----------------------
+    void GroundCheck()
+    {
+        isGrounded = false;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, distance, layer))
+        {
+            if (hit.collider.CompareTag("Jumpers"))
             {
                 canJump = true;
             }
             else
             {
-
                 isGrounded = true;
             }
         }
-        else
-        {
-            isGrounded = false;
-        }
-        Debug.DrawRay(transform.position, Vector3.down * distance, isGrounded ? Color.red : Color.green);
 
         rb.mass = isGrounded ? normalMass : airMass;
 
         if (isGrounded)
             jumpCount = 0;
-        #endregion
 
-        #region Jump
+        Debug.DrawRay(transform.position, Vector3.down * distance, isGrounded ? Color.green : Color.red);
+    }
+
+    // ---------------------- JUMP ----------------------
+    void HandleJump()
+    {
         if (canJump)
         {
             if (isGrounded || jumpCount < maxJump)
@@ -134,63 +149,32 @@ public class PlayerControler : MonoBehaviour, IThrowAble
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
                 jumpCount++;
-                canJump = false;
             }
+
+            canJump = false;
         }
-        #endregion
-
-        if (rb.linearVelocity.y < 0)
-            rb.linearVelocity += new Vector3(0, -25.0f, 0) * Time.deltaTime;
-    }
-
-    private void LateUpdate()
-    {
-        // Rotación cámara (pitch)
-        rotX -= lookInput.y * lookSensitivity;
-        rotX = Mathf.Clamp(rotX, -80f, 80f);
-        if (cameraTransform != null)
-            cameraTransform.localRotation = Quaternion.Euler(rotX, 0, 0);
-
-        // Rotación jugador (yaw)
-        transform.Rotate(Vector3.up * lookInput.x * lookSensitivity);
     }
 
     // ---------------------- INPUTS ----------------------
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        OnMoveEvent?.Invoke(moveInput);
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
             canJump = true;
-            OnJumpEvent?.Invoke();
-        }
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
         lookInput = context.ReadValue<Vector2>();
-        OnLookEvent?.Invoke(lookInput);
     }
 
     public void OnRun(InputAction.CallbackContext context)
     {
-        isRun = context.performed;
-    }
-
-    // ---------------------- CLIMB ----------------------
-    public void Climb(bool value)
-    {
-        isClimb = value;
-        rb.useGravity = !value;
-        if (value)
-            rb.linearVelocity = Vector3.zero;
-
-        OnClimbEvent?.Invoke(value);
+        isRun = context.ReadValue<float>() > 0.5f;
     }
 
     // ---------------------- VIDA ----------------------
@@ -204,8 +188,7 @@ public class PlayerControler : MonoBehaviour, IThrowAble
         if (hitEffect != null)
             Instantiate(hitEffect, transform.position, Quaternion.identity);
 
-        if (_healthbar != null)
-            _healthbar.UpdateHealthbar(_maxHealth, _currentHealth);
+        _healthbar?.UpdateHealthbar(_maxHealth, _currentHealth);
 
         if (_currentHealth <= 0f)
             Die();
@@ -216,7 +199,7 @@ public class PlayerControler : MonoBehaviour, IThrowAble
         if (_deathEffect != null)
             Instantiate(_deathEffect, transform.position, Quaternion.identity);
 
-        OnDieEvent?.Invoke();
+        OnDieEvent?.Invoke(); // ÚNICO EVENTO
         Destroy(gameObject);
     }
 
@@ -224,7 +207,7 @@ public class PlayerControler : MonoBehaviour, IThrowAble
     public void Throw()
     {
         isKnockback = true;
-        Invoke("DisableKnockback", knockbackDuration);
+        Invoke(nameof(DisableKnockback), knockbackDuration);
     }
 
     public void DisableKnockback()

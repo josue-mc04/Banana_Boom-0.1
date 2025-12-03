@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerInitialScript : MonoBehaviour
 {
     public Transform SpawnPoint1, SpawnPoint2;
-    public GameObject Player1, Player2;
+    public GameObject Player1, Player2, mainCamera;
 
     public static event Action<Transform> transPlayer;
     private void Start()
@@ -15,5 +15,6 @@ public class PlayerInitialScript : MonoBehaviour
         GameObject player2 = Instantiate(Player2, SpawnPoint2.position, SpawnPoint2.rotation);
         transPlayer?.Invoke(player2.transform);
         Debug.Log("Se mando el Segundo Player");
+        mainCamera.SetActive(false);
     }
 }

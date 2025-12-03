@@ -1052,6 +1052,7 @@ MonoBehaviour:
   runSpeed: 15
   jumpForce: 10
   maxJump: 2
+  canJump: 0
   climbSpeed: 5
   distance: 1
   layer:

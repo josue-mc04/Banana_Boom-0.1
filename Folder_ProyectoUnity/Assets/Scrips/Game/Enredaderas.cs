@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class Enredaderas : MonoBehaviour
 {
@@ -17,4 +17,4 @@ public class Enredaderas : MonoBehaviour
             collision.gameObject.GetComponent<PlayerControler>().Climb(false);
         }
     }
-}
+}*/
