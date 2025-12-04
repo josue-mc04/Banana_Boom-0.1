@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private Weapon[] allWeaponsInInspector;
-    [SerializeField] private Transform weaponHolder; 
+    [SerializeField] private Transform weaponHolder;
+
+    [SerializeField] private WeaponUI weaponUI;
 
     //instanciamos
     private CircularList<Weapon> weaponCircularList = new CircularList<Weapon>();
@@ -24,6 +26,8 @@ public class WeaponManager : MonoBehaviour
         //equipa la primera arma
         weaponCircularList.GetCurrent()?.Equip();
         weaponCircularList.GetCurrent()?.gameObject.SetActive(true);
+
+        weaponUI.UpdateWeaponIcon(weaponCircularList.GetCurrent().weaponIcon);
     }
 
     public void OnNextWeapon(InputAction.CallbackContext context)
@@ -42,6 +46,8 @@ public class WeaponManager : MonoBehaviour
         //activa y equipar la nueva arma
         weaponCircularList.GetCurrent()?.Equip();
         weaponCircularList.GetCurrent()?.gameObject.SetActive(true);
+
+        weaponUI.UpdateWeaponIcon(weaponCircularList.GetCurrent().weaponIcon);
     }
 
     public void OnPreviousWeapon(InputAction.CallbackContext context)
@@ -56,6 +62,8 @@ public class WeaponManager : MonoBehaviour
         weaponCircularList.Prev();
         weaponCircularList.GetCurrent()?.Equip();
         weaponCircularList.GetCurrent()?.gameObject.SetActive(true);
+
+        weaponUI.UpdateWeaponIcon(weaponCircularList.GetCurrent().weaponIcon);
     }
 
     public void OnFireWeapon(InputAction.CallbackContext context)

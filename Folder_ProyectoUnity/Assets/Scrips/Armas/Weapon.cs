@@ -9,6 +9,9 @@ public interface Iweapon
 }
 public class Weapon : MonoBehaviour, Iweapon
 {
+    [Header("UI")]
+    public Sprite weaponIcon;
+
     [Header("Weapon stats")] //estadistica de arma
     protected string weaponName;
     protected int ammo = 20;

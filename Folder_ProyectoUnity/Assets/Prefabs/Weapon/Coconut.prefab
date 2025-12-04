@@ -56,7 +56,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fafdf7795d8a44dbe2ad54b1507b21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coconutPrefab: {fileID: 8611982216582111686, guid: 6afacda2fd44b2f4496fff733b1e6f0b, type: 3}
+  weaponIcon: {fileID: 0}
+  coconutPrefab: {fileID: 2488880884709677112}
   shootPoint: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
   distance: 10
   height: 3
