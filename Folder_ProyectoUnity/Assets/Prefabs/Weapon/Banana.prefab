@@ -48,10 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3cc258c50f6ea48ae751c6dc577cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bananaPrefab: {fileID: 8611982216582111686}
+  data: {fileID: 0}
   shootPoint: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
-  shootForce: 20
-  range: 0
+  target: {fileID: 0}
 --- !u!33 &4335939471497988651
 MeshFilter:
   m_ObjectHideFlags: 0

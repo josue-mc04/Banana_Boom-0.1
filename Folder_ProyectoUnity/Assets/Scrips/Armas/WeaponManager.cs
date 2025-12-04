@@ -1,101 +1,77 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
-using DG.Tweening;
 
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private Weapon[] allWeaponsInInspector;
-    [SerializeField] private Transform weaponHolder;
+    [SerializeField] private Transform weaponHolder; 
 
-    private LinkedList<Weapon> weaponLinkedList;
-    private LinkedListNode<Weapon> currentlyEquippedWeaponNode;
+    //instanciamos
+    private CircularList<Weapon> weaponCircularList = new CircularList<Weapon>();
 
     private void Start()
     {
-        InitializeWeaponLinkedList();
-
-        if (currentlyEquippedWeaponNode != null)
+        //agregar las armas a la lista circular
+        foreach (Weapon w in allWeaponsInInspector)
         {
-            EquipWeapon(currentlyEquippedWeaponNode.Value);
-        }
-        else
-        {
-            Debug.LogWarning("No hay armas asignadas en WeaponManager.");
-        }
-    }
-
-    private void InitializeWeaponLinkedList()
-    {
-        weaponLinkedList = new LinkedList<Weapon>();
-
-        for (int i = 0; i < allWeaponsInInspector.Length; i++)
-        {
-            weaponLinkedList.AddLast(allWeaponsInInspector[i]);
+            weaponCircularList.Add(w);
+            w.gameObject.SetActive(false);
+            w.transform.SetParent(weaponHolder, false);
+            w.transform.localPosition = Vector3.zero;//coloca el arma en weaponHolder
+            w.transform.localRotation = Quaternion.identity;
         }
 
-        currentlyEquippedWeaponNode = weaponLinkedList.First;
+        //equipa la primera arma
+        weaponCircularList.GetCurrent()?.Equip();
+        weaponCircularList.GetCurrent()?.gameObject.SetActive(true);
     }
 
     public void OnNextWeapon(InputAction.CallbackContext context)
     {
-        if (!context.performed || currentlyEquippedWeaponNode == null)
+        if (!context.performed)
         {
             return;
         }
 
-        currentlyEquippedWeaponNode = currentlyEquippedWeaponNode.Next ?? weaponLinkedList.First;
-        EquipWeapon(currentlyEquippedWeaponNode.Value);
+        //desactiva lo visual de larma actual
+        weaponCircularList.GetCurrent()?.gameObject.SetActive(false);
+
+        //avanza circulamente
+        weaponCircularList.Next();
+
+        //activa y equipar la nueva arma
+        weaponCircularList.GetCurrent()?.Equip();
+        weaponCircularList.GetCurrent()?.gameObject.SetActive(true);
     }
 
     public void OnPreviousWeapon(InputAction.CallbackContext context)
     {
-        if (!context.performed || currentlyEquippedWeaponNode == null)
-        {
+        if (!context.performed)
+        { 
             return;
         }
-
-        currentlyEquippedWeaponNode = currentlyEquippedWeaponNode.Previous ?? weaponLinkedList.Last;
-        EquipWeapon(currentlyEquippedWeaponNode.Value);
+        //desactiva lo visual del arma
+        weaponCircularList.GetCurrent()?.gameObject.SetActive(false);
+        //pa retroceder un nodo, lo mismo q el anterior
+        weaponCircularList.Prev();
+        weaponCircularList.GetCurrent()?.Equip();
+        weaponCircularList.GetCurrent()?.gameObject.SetActive(true);
     }
 
     public void OnFireWeapon(InputAction.CallbackContext context)
     {
-        if (context.performed && currentlyEquippedWeaponNode != null)
+        if (context.performed)
         {
-            currentlyEquippedWeaponNode.Value.Fire();
+            //llamo al metodo del arma actual, cuando presiono el boton de disparo
+            weaponCircularList.GetCurrent()?.Fire();
         }
     }
 
     public void OnReloadWeapon(InputAction.CallbackContext context)
     {
-        if (context.performed && currentlyEquippedWeaponNode != null)
+        if (context.performed)
         {
-            currentlyEquippedWeaponNode.Value.Reload();
+            weaponCircularList.GetCurrent()?.Reload();
         }
-    }
-
-    private void EquipWeapon(Weapon weaponToEquip)
-    {
-        LinkedListNode<Weapon> node = weaponLinkedList.First;
-        while (node != null)
-        {
-            node.Value.gameObject.SetActive(false);
-            node = node.Next;
-        }
-
-        weaponToEquip.gameObject.SetActive(true);
-
-        weaponToEquip.transform.SetParent(weaponHolder, false);
-        weaponToEquip.transform.localPosition = Vector3.zero;
-        weaponToEquip.transform.localRotation = Quaternion.identity;
-
-        WeaponEffects weaponEffects = weaponToEquip.GetComponent<WeaponEffects>();
-        if (weaponEffects != null)
-        {
-            weaponEffects.PlaySwitchTween();
-        }
-
-        Debug.Log($"Arma quipada: {weaponToEquip.name}");
     }
 }

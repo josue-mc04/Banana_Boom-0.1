@@ -205,7 +205,7 @@ public class PlayerControler : MonoBehaviour
 
     // ---------------------- KNOCKBACK ----------------------
     public void Throw()
-    {
+    { 
         isKnockback = true;
         Invoke(nameof(DisableKnockback), knockbackDuration);
     }
