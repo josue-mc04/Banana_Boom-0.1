@@ -1447,8 +1447,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnPoint1: {fileID: 1071164788}
   SpawnPoint2: {fileID: 1813307954}
-  Player1: {fileID: 3722408436423713071, guid: 37cc8ce696fea1049a92570404f9bf6e, type: 3}
-  Player2: {fileID: 3722408436423713071, guid: 76491a39aa08ee842980e65f95a02933, type: 3}
+  Player1: {fileID: 3722408436423713071, guid: 76491a39aa08ee842980e65f95a02933, type: 3}
+  Player2: {fileID: 3722408436423713071, guid: 879a1e3db24dda040af17967bbd47669, type: 3}
   mainCamera: {fileID: 1083556}
 --- !u!114 &502723457
 MonoBehaviour:
@@ -5293,3 +5293,5 @@ SceneRoots:
   - {fileID: 445985512}
   - {fileID: 1597963907}
   - {fileID: 138085385}
+  - {fileID: 1083560}
+  - {fileID: 616846179}
