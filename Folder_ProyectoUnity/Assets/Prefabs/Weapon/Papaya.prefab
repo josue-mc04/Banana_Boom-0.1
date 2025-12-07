@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1847336863801842148}
   - component: {fileID: 1812090521858867567}
-  - component: {fileID: 4548818927324539858}
   - component: {fileID: 1232437941765042105}
   - component: {fileID: 664842617672093159}
   - component: {fileID: -4751762476806673421}
@@ -44,22 +43,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4718194815826292937}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &4548818927324539858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4718194815826292937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ef8e4ae05f1704f915200a869782de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  papayaPrefab: {fileID: 4718194815826292937}
-  shootPoint: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
-  throwForce: 12
-  radius: 0
 --- !u!23 &1232437941765042105
 MeshRenderer:
   m_ObjectHideFlags: 0

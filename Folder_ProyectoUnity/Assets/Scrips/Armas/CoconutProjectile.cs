@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class CoconutProjectile : Weapon
 {
@@ -41,4 +41,4 @@ public class CoconutProjectile : Weapon
     {
         Debug.Log($"{weaponName} recarga sus cocos.");
     }
-}
+}*/
