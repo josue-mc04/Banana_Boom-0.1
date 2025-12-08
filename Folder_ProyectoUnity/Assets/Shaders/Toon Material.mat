@@ -48,8 +48,8 @@ Material:
     - _RimAmount: 0.7
     - _RimTheshhoid: 0.1
     m_Colors:
-    - _AmbientColor: {r: 0.83396226, g: 0.6840615, b: 0.53342116, a: 0}
-    - _MainColor: {r: 0.79622644, g: 0.79622644, b: 0.79622644, a: 0}
+    - _AmbientColor: {r: 1, g: 1, b: 1, a: 0}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

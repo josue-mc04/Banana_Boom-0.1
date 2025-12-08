@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Creditos.unity
     guid: 9d47be9d469400844999d95ea1a49b4e
+  - enabled: 1
+    path: Assets/Scenes/Looby.unity
+    guid: a35bb25e7c223f24b819cf1104fa1341
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
