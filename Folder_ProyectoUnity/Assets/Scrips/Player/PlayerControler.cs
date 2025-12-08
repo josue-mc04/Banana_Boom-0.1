@@ -39,7 +39,7 @@ public class PlayerControler : MonoBehaviour
     private RaycastHit hit;
 
     [Header("Unity Event")]
-    public UnityEvent OnDieEvent; // ÚNICO EVENTO ACTIVO
+    public UnityEvent OnDieEvent;
 
     private void Awake()
     {
@@ -171,7 +171,7 @@ public class PlayerControler : MonoBehaviour
 
     // ---------------------- KNOCKBACK ----------------------
     public void Throw()
-    { 
+    {
         isKnockback = true;
         Invoke(nameof(DisableKnockback), knockbackDuration);
     }

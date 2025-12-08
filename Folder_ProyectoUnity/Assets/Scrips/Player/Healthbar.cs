@@ -7,7 +7,10 @@ public class Healthbar : MonoBehaviour
 
     public void UpdateHealthbar(float maxHealth, float currentHealth)
     {
-        if (_healthbarSprite == null) return;
+        if (_healthbarSprite == null)
+        {
+            return;
+        }
         _healthbarSprite.fillAmount = Mathf.Clamp01(currentHealth / maxHealth);
     }
 }

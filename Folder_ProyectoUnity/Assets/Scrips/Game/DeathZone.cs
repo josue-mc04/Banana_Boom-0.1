@@ -44,7 +44,10 @@ public class DeathZone : MonoBehaviour
             float elapsed = 0f;
             while (elapsed < tickInterval)
             {
-                if (player == null) break;
+                if (player == null)
+                {
+                    break;
+                }
                 player.TakeDamage(damagePerTick * Time.deltaTime / tickInterval);
                 elapsed += Time.deltaTime;
                 yield return null;

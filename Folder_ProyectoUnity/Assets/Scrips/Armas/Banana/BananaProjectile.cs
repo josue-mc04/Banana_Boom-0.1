@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class BananaProjectile : MonoBehaviour
 {
-    [HideInInspector] public float damage;
+    public float damage = 5f;
+    public float speed = 20f;
+
     [HideInInspector] public Transform owner;
-    [HideInInspector] public float speed = 20f;
 
     private Rigidbody rb;
 
@@ -13,26 +14,25 @@ public class BananaProjectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    //disparo asistido
-    public void ShootTowards(Vector3 target)
+    private void Start()
     {
-        if (rb == null) return;
-
-        Vector3 direction = (target - transform.position).normalized;
-        rb.linearVelocity = direction * speed;
-        transform.forward = direction; //la banana mire al objetivo
+        rb.linearVelocity = transform.forward * speed;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.transform.IsChildOf(owner)) return; //ignorar al jugador y sus hijos
-
-        PlayerControler player = other.GetComponent<PlayerControler>();
-        if (player != null)
+        //evitar golpear al mismo player
+        if (owner != null && collision.transform == owner)
         {
-            player.TakeDamage(damage);
-            Destroy(gameObject);
             return;
+        }
+
+        //buscar componente en el PADRE del collider
+        PlayerControler pc = collision.collider.GetComponentInParent<PlayerControler>();
+        if (pc != null)
+        {
+            Debug.Log("HIT a: " + pc.name);
+            pc.TakeDamage(damage);
         }
 
         Destroy(gameObject);
