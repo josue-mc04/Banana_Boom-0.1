@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: DataBanana
   m_EditorClassIdentifier: 
   weaponName: Banana Gun
-  weaponIcon: {fileID: 0}
+  weaponIcon: {fileID: 3625043607559282579, guid: 39408273f2c886748a0a32f2671bec3d, type: 3}
   maxAmmo: 10
   damage: 5
   fireRate: 0.5
   reloadTime: 2
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 8611982216582111686, guid: 6afacda2fd44b2f4496fff733b1e6f0b, type: 3}
   shootForce: 20
   punchForce: 15
   explosionRadius: 3

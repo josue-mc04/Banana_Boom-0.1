@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public interface Iweapon
@@ -8,14 +7,16 @@ public interface Iweapon
     void Reload();
     void Equip();
 }
+
 public abstract class Weapon : MonoBehaviour, Iweapon
 {
     [Header("Datos del Arma")]
-    [ SerializeField]public WeaponData weaponData;
+    [SerializeField] public WeaponData weaponData;
 
     [Header("Estado")]
-    [SerializeField]public int currentAmmo;
-    [SerializeField]public bool canFire = true;
+    [SerializeField] public int currentAmmo;
+    [SerializeField] public bool canFire = true;
+    protected bool isReloading = false;
 
     public Sprite weaponIcon => weaponData != null ? weaponData.WeaponIcon : null;
 
@@ -30,6 +31,7 @@ public abstract class Weapon : MonoBehaviour, Iweapon
     private void OnEnable()
     {
         canFire = true;
+        isReloading = false;
 
         if (weaponData != null)
             currentAmmo = weaponData.MaxAmmo;
@@ -39,11 +41,21 @@ public abstract class Weapon : MonoBehaviour, Iweapon
 
     public virtual void Reload()
     {
-        if (weaponData != null)
-        {
-            currentAmmo = weaponData.MaxAmmo;
-            Debug.Log(weaponData.WeaponName + " recargada");
-        }
+        if (isReloading || weaponData == null) return;
+
+        isReloading = true;
+        Debug.Log(weaponData.WeaponName + " recargando...");
+
+        //recarga con delay usando Coroutine
+        StartCoroutine(ReloadCoroutine());
+    }
+
+    private IEnumerator ReloadCoroutine()
+    {
+        yield return new WaitForSeconds(weaponData.ReloadTime);
+        currentAmmo = weaponData.MaxAmmo;
+        isReloading = false;
+        Debug.Log(weaponData.WeaponName + " recargada");
     }
 
     public virtual void Equip()

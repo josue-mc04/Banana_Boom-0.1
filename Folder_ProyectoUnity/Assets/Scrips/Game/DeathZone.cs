@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class DeathZone : MonoBehaviour
 {
-    [Header("Daño por cada segundo dentro de la zona")]
+    [Header("Damage por cada segundo dentro de la zona")]
     [SerializeField] private float damagePerTick = 5f;
 
-    [Header("Tiempo entre cada daño (en segundos)")]
+    [Header("tiempo entre cada daño (en segundos)")]
     [SerializeField] private float tickInterval = 1f;
 
-    // Guarda una referencia a cada jugador que está recibiendo daño
+    //guarda una referencia a cada jugador que esta recibiendo damage
     private Dictionary<PlayerControler, Coroutine> activeCoroutines = new Dictionary<PlayerControler, Coroutine>();
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerControler player = other.GetComponent<PlayerControler>();
+        PlayerControler player = other.GetComponentInParent<PlayerControler>();
 
         if (player != null && !activeCoroutines.ContainsKey(player))
         {
@@ -26,7 +26,7 @@ public class DeathZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        PlayerControler player = other.GetComponent<PlayerControler>();
+        PlayerControler player = other.GetComponentInParent<PlayerControler>();
 
         if (player != null && activeCoroutines.ContainsKey(player))
         {
@@ -35,22 +35,25 @@ public class DeathZone : MonoBehaviour
         }
     }
 
+
     private IEnumerator ApplyDamageOverTime(PlayerControler player)
     {
-        // Mientras el jugador esté vivo y dentro de la zona, le quita vida
         while (player != null)
         {
-            player.TakeDamage(damagePerTick);
-            yield return new WaitForSeconds(tickInterval);
-
-            if (player == null)
-                break; // si el jugador muere y se destruye, salimos
+            //damage proporcional al tiempo de frame 
+            float elapsed = 0f;
+            while (elapsed < tickInterval)
+            {
+                if (player == null) break;
+                player.TakeDamage(damagePerTick * Time.deltaTime / tickInterval);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
         }
     }
-
     private void OnDisable()
     {
-        // Limpia las corutinas activas al desactivar el objeto
+        //limpia las corutinas activas al desactivar el objeto
         foreach (var kv in new List<Coroutine>(activeCoroutines.Values))
         {
             if (kv != null)

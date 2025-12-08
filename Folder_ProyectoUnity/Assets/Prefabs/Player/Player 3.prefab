@@ -715,7 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allWeaponsInInspector:
   - {fileID: 7415975546191235073}
-  - {fileID: 405983069615072534}
+  - {fileID: 0}
   weaponHolder: {fileID: 2843227200165608323}
   weaponUI: {fileID: 2766032310863275841}
 --- !u!1 &3722408436423713071
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 3411211560142103501}
   m_Layer: 6
   m_Name: Player 3
-  m_TagString: Player
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1023,7 +1023,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4452186477605338338}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1078,7 +1078,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -2183,17 +2183,6 @@ PrefabInstance:
       insertIndex: 1
       addedObject: {fileID: 4942834043350461608}
   m_SourcePrefab: {fileID: 100100000, guid: 6afacda2fd44b2f4496fff733b1e6f0b, type: 3}
---- !u!114 &405983069615072534 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6878463370203681967, guid: 6afacda2fd44b2f4496fff733b1e6f0b, type: 3}
-  m_PrefabInstance: {fileID: 6545808948597649849}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3266388170411331711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a3cc258c50f6ea48ae751c6dc577cd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2896541107405621402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8279294265474349347, guid: 6afacda2fd44b2f4496fff733b1e6f0b, type: 3}
