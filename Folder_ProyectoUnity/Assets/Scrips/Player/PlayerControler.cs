@@ -190,7 +190,13 @@ public class PlayerControler : MonoBehaviour
         if (_deathEffect != null)
             Instantiate(_deathEffect, transform.position, Quaternion.identity);
 
-        OnDieEvent?.Invoke(); // ÚNICO EVENTO
+        // Desactivar cámara del jugador antes de morir
+        Camera cam = GetComponentInChildren<Camera>();
+        if (cam != null)
+            cam.gameObject.SetActive(false);
+
+        OnDieEvent?.Invoke();
+
         Destroy(gameObject);
     }
 
