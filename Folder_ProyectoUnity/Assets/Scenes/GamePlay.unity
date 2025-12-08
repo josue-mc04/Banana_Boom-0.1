@@ -1511,11 +1511,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7528232920700180729, guid: 2dc4d761cee8a5c4f9ac4d2a5a6bf2dc, type: 3}
 --- !u!1 &469219862
@@ -1713,6 +1713,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jumperw (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2dc4d761cee8a5c4f9ac4d2a5a6bf2dc, type: 3}
+      propertyPath: m_TagString
+      value: Jumpers
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1771,11 +1775,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7528232920700180729, guid: 2dc4d761cee8a5c4f9ac4d2a5a6bf2dc, type: 3}
 --- !u!1 &527628451
@@ -1948,6 +1952,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569996722}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &647375421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4593130486874181694, guid: 645f77f55624e294cbd5acd87e58bc30, type: 3}
+  m_PrefabInstance: {fileID: 1038714031}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &647375425
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647375421}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8245426573784773463, guid: 645f77f55624e294cbd5acd87e58bc30, type: 3}
 --- !u!1 &687262098 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8860543208547902198, guid: 256e6ee8cf29c13479b283f25a697d29, type: 3}
@@ -2355,6 +2386,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jumperw (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2dc4d761cee8a5c4f9ac4d2a5a6bf2dc, type: 3}
+      propertyPath: m_TagString
+      value: Jumpers
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2719,7 +2754,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -4593130486874181694, guid: 645f77f55624e294cbd5acd87e58bc30, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 647375425}
   m_SourcePrefab: {fileID: 100100000, guid: 645f77f55624e294cbd5acd87e58bc30, type: 3}
 --- !u!1 &1071164787
 GameObject:
@@ -5356,6 +5394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jumperw (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2dc4d761cee8a5c4f9ac4d2a5a6bf2dc, type: 3}
+      propertyPath: m_TagString
+      value: Jumpers
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5414,11 +5456,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7528232920700180729, guid: 2dc4d761cee8a5c4f9ac4d2a5a6bf2dc, type: 3}
 --- !u!1001 &1836157181
@@ -5488,6 +5530,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2dc4d761cee8a5c4f9ac4d2a5a6bf2dc, type: 3}
       propertyPath: m_Name
       value: Jumperw
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2dc4d761cee8a5c4f9ac4d2a5a6bf2dc, type: 3}
+      propertyPath: m_TagString
+      value: Jumpers
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5712,11 +5758,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7528232920700180729, guid: 2dc4d761cee8a5c4f9ac4d2a5a6bf2dc, type: 3}
 --- !u!64 &2010757272
@@ -5958,5 +6004,4 @@ SceneRoots:
   - {fileID: 1597963907}
   - {fileID: 138085385}
   - {fileID: 1083560}
-  - {fileID: 616846179}
   - {fileID: 1038714031}

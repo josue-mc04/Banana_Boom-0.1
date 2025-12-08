@@ -32,6 +32,9 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float normalMass = 1f;
     [SerializeField] private float airMass = 1.5f;
 
+    [Header("Jump Pad")]
+    [SerializeField] private float jumpPadMultiplier = 3f;
+
     private bool isKnockback;
     public float knockbackDuration;
 
@@ -65,6 +68,14 @@ public class PlayerControler : MonoBehaviour
 
         if (rb.linearVelocity.y < 0)
             rb.AddForce(Vector3.down * 25f * Time.deltaTime, ForceMode.Acceleration);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Jumpers"))
+        {
+            JumpPadBounce();
+        }
     }
 
     // ---------------------- MOVEMENT ----------------------
@@ -124,6 +135,20 @@ public class PlayerControler : MonoBehaviour
 
             canJump = false;
         }
+    }
+    void JumpPadBounce()
+    {
+        //fuerza mas alta que el salto normal
+        float jumpPadForce = jumpForce * jumpPadMultiplier;
+
+        //resetea velocidad Y antes de rebotar
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+
+        //impulso fuerte hacia arriba
+        rb.AddForce(Vector3.up * jumpPadForce, ForceMode.VelocityChange);
+
+        //para resetear saltos si quieres hacer doble salto luego
+        jumpCount = 0;
     }
 
     // ---------------------- INPUTS ----------------------
