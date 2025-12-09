@@ -3,6 +3,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
+public interface IthrowAble
+{
+    void Throw();
+}
+
 public class PlayerControler : MonoBehaviour, IthrowAble
 {
     [Header("HealthPoints")]

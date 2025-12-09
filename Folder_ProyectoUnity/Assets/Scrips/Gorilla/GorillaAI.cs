@@ -3,11 +3,6 @@ using UnityEngine.AI;
 using System.Collections.Generic;
 using System;
 
-public interface IthrowAble
-{
-    void Throw();
-}
-
 public class GorillaAI : MonoBehaviour
 {
     [Header("Patrulla")]
