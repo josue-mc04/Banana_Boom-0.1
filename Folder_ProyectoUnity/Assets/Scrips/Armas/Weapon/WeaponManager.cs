@@ -13,17 +13,24 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-        //agregar las armas a la lista circular
-        foreach (Weapon w in allWeaponsInInspector)
+        Weapon[] weaponsInHierarchy = weaponHolder.GetComponentsInChildren<Weapon>(true);
+
+        if (weaponsInHierarchy.Length == 0)
+        {
+            Debug.LogError("No se encontraron armas en el WeaponHolder");
+            return;
+        }
+
+        foreach (Weapon w in weaponsInHierarchy)
         {
             weaponCircularList.Add(w);
             w.gameObject.SetActive(false);
             w.transform.SetParent(weaponHolder, false);
-            w.transform.localPosition = Vector3.zero;//coloca el arma en weaponHolder
+            w.transform.localPosition = Vector3.zero;
             w.transform.localRotation = Quaternion.identity;
         }
 
-        //equipa la primera arma
+        // Equipa la primera arma
         weaponCircularList.GetCurrent()?.Equip();
         weaponCircularList.GetCurrent()?.gameObject.SetActive(true);
 

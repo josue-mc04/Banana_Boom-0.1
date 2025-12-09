@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections;
 public class PapayaBomb : Weapon
 {
@@ -59,4 +59,4 @@ public class PapayaBomb : Weapon
 
         Destroy(papaya);
     }
-}
+}*/

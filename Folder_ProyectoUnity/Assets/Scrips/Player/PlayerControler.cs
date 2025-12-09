@@ -5,9 +5,6 @@ using UnityEngine.Events;
 
 public class PlayerControler : MonoBehaviour
 {
-    [Header("References")]
-    public Transform cameraTransform;
-
     [Header("HealthPoints")]
     [SerializeField] private float _maxHealth = 50;
     [SerializeField] private GameObject _deathEffect, hitEffect;
@@ -35,19 +32,17 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float normalMass = 1f;
     [SerializeField] private float airMass = 1.5f;
 
+    [Header("Jump Pad")]
+    [SerializeField] private float jumpPadMultiplier = 3f;
+
     private bool isKnockback;
     public float knockbackDuration;
 
     private bool isGrounded;
     private RaycastHit hit;
 
-    [Header("Look / Camera")]
-    [SerializeField] private float lookSensitivity = 3f;
-    private Vector2 lookInput;
-    private float rotX;
-
     [Header("Unity Event")]
-    public UnityEvent OnDieEvent; // ÚNICO EVENTO ACTIVO
+    public UnityEvent OnDieEvent;
 
     private void Awake()
     {
@@ -56,16 +51,6 @@ public class PlayerControler : MonoBehaviour
 
     private void Start()
     {
-        if (cameraTransform == null)
-        {
-            Camera cam = Camera.main;
-            if (cam != null)
-                cameraTransform = cam.transform;
-        }
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
         _currentHealth = _maxHealth;
         _healthbar?.UpdateHealthbar(_maxHealth, _currentHealth);
 
@@ -85,15 +70,12 @@ public class PlayerControler : MonoBehaviour
             rb.AddForce(Vector3.down * 25f * Time.deltaTime, ForceMode.Acceleration);
     }
 
-    private void LateUpdate()
+    private void OnTriggerEnter(Collider other)
     {
-        rotX -= lookInput.y * lookSensitivity;
-        rotX = Mathf.Clamp(rotX, -80f, 80f);
-
-        if (cameraTransform != null)
-            cameraTransform.localRotation = Quaternion.Euler(rotX, 0, 0);
-
-        transform.Rotate(Vector3.up * lookInput.x * lookSensitivity);
+        if (other.CompareTag("Jumpers"))
+        {
+            JumpPadBounce();
+        }
     }
 
     // ---------------------- MOVEMENT ----------------------
@@ -154,6 +136,20 @@ public class PlayerControler : MonoBehaviour
             canJump = false;
         }
     }
+    void JumpPadBounce()
+    {
+        //fuerza mas alta que el salto normal
+        float jumpPadForce = jumpForce * jumpPadMultiplier;
+
+        //resetea velocidad Y antes de rebotar
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+
+        //impulso fuerte hacia arriba
+        rb.AddForce(Vector3.up * jumpPadForce, ForceMode.VelocityChange);
+
+        //para resetear saltos si quieres hacer doble salto luego
+        jumpCount = 0;
+    }
 
     // ---------------------- INPUTS ----------------------
     public void OnMove(InputAction.CallbackContext context)
@@ -165,11 +161,6 @@ public class PlayerControler : MonoBehaviour
     {
         if (context.performed)
             canJump = true;
-    }
-
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        lookInput = context.ReadValue<Vector2>();
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -199,13 +190,19 @@ public class PlayerControler : MonoBehaviour
         if (_deathEffect != null)
             Instantiate(_deathEffect, transform.position, Quaternion.identity);
 
-        OnDieEvent?.Invoke(); // ÚNICO EVENTO
+        // Desactivar cámara del jugador antes de morir
+        Camera cam = GetComponentInChildren<Camera>();
+        if (cam != null)
+            cam.gameObject.SetActive(false);
+
+        OnDieEvent?.Invoke();
+
         Destroy(gameObject);
     }
 
     // ---------------------- KNOCKBACK ----------------------
     public void Throw()
-    { 
+    {
         isKnockback = true;
         Invoke(nameof(DisableKnockback), knockbackDuration);
     }

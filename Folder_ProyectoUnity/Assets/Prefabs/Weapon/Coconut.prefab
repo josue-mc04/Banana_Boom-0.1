@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4817638125998493814}
   - component: {fileID: 3801577444863300787}
-  - component: {fileID: 2992864998808132536}
   - component: {fileID: 9002970481985683836}
   - component: {fileID: 2718948803330539215}
   - component: {fileID: -8048157489545820548}
@@ -44,25 +43,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2488880884709677112}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2992864998808132536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2488880884709677112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70fafdf7795d8a44dbe2ad54b1507b21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponIcon: {fileID: 0}
-  coconutPrefab: {fileID: 2488880884709677112}
-  shootPoint: {fileID: 6745143243895775995, guid: 280406faaea58144986377701c15b84a, type: 3}
-  distance: 10
-  height: 3
-  travelTime: 1.2
-  stunTime: 0
 --- !u!23 &9002970481985683836
 MeshRenderer:
   m_ObjectHideFlags: 0
