@@ -23,7 +23,7 @@ public class QueuePersecution<T>
         return count;
     }
 
-    //Agregar elemento al final
+    //agregar elemento al final
     public void Enqueue(T element)
     {
         Node newNode = new Node(element);
@@ -44,7 +44,7 @@ public class QueuePersecution<T>
         Debug.Log("Enqueue: " + element);
     }
 
-    //Remueve elemento q esta al frente
+    //remueve elemento q esta al frente
     public T Dequeue()
     {
         if (front == null) //si no hay elementos
@@ -67,7 +67,7 @@ public class QueuePersecution<T>
         return value;
     }
 
-    //Ver el frente sin removerlo
+    //ver el frente sin removerlo
     public T Peek()
     {
         if (front == null)
@@ -79,7 +79,7 @@ public class QueuePersecution<T>
         return front.data;
     }
 
-    //Verifica si esta vacia
+    //verifica si esta vacia
     public bool IsEmpty()
     {
         if (front == null)
@@ -92,7 +92,7 @@ public class QueuePersecution<T>
         }
     }
 
-    //Limpia toda la cola
+    //limpia toda la cola
     public void Clear()
     {
         front = null;

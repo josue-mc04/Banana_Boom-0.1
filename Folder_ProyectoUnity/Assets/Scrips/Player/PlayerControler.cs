@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
-public class PlayerControler : MonoBehaviour
+public class PlayerControler : MonoBehaviour, IthrowAble
 {
     [Header("HealthPoints")]
     [SerializeField] private float _maxHealth = 50;
