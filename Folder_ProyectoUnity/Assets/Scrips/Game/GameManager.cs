@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
         gameEnded = true;
 
         if (playerID == 1)
-            SceneManager.LoadScene("Win P2");
-        else
             SceneManager.LoadScene("Win P1");
+        else
+            SceneManager.LoadScene("Win P2");
     }
 }
