@@ -7,6 +7,7 @@ public class SceneEvents : MonoBehaviour
     public static event Action OnVolverMenu;
     public static event Action OnPlayer1Win;
     public static event Action OnPlayer2Win;
+    public static event Action OnExit;
 
     public static void Jugar()
     {
@@ -24,5 +25,9 @@ public class SceneEvents : MonoBehaviour
     public static void Player2Win()
     {
         OnPlayer2Win?.Invoke();
+    }
+    public static void Exit()
+    {
+        OnExit?.Invoke();
     }
 }

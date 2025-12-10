@@ -5,7 +5,8 @@ public class ButtonScene : MonoBehaviour
     public enum TipoBoton
     {
         Jugar,
-        MenuPrincipal
+        MenuPrincipal,
+        Exit
     }
 
     public TipoBoton tipo;
@@ -22,6 +23,9 @@ public class ButtonScene : MonoBehaviour
                 SceneEvents.VolverMenu();
                 break;
 
+            case TipoBoton.Exit:
+                SceneEvents.Exit();
+                break;
             default:
                 Debug.LogWarning("El tipo de boton no esta configurado");
                 break;

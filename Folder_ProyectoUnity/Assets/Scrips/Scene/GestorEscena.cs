@@ -9,6 +9,7 @@ public class GestorEscena : MonoBehaviour
         SceneEvents.OnVolverMenu += CargarMenu;
         SceneEvents.OnPlayer1Win += CargarEscenaP1;
         SceneEvents.OnPlayer2Win += CargarEscenaP2;
+        SceneEvents.OnExit += CargarSalida;
     }
     private void OnDisable()
     {
@@ -16,6 +17,7 @@ public class GestorEscena : MonoBehaviour
         SceneEvents.OnVolverMenu -= CargarMenu;
         SceneEvents.OnPlayer1Win -= CargarEscenaP1;
         SceneEvents.OnPlayer2Win -= CargarEscenaP2;
+        SceneEvents.OnExit -= CargarSalida;
     }
     void CargarJuego()
     {
@@ -32,5 +34,10 @@ public class GestorEscena : MonoBehaviour
     void CargarEscenaP2()
     {
         SceneManager.LoadScene("Win P2");
+    }
+    void CargarSalida()
+    {
+        Application.Quit();
+        Debug.Log("Salio de banana bugs TT");
     }
 }
