@@ -12,9 +12,12 @@ public class PlayerInitialScript : MonoBehaviour
         GameObject player1 =Instantiate(Player1, SpawnPoint1.position, SpawnPoint1.rotation);
         transPlayer?.Invoke(player1.transform);
         Debug.Log("Se mando el primer Player");
+        player1.GetComponent<PlayerID>().playerID = 1;
+
         GameObject player2 = Instantiate(Player2, SpawnPoint2.position, SpawnPoint2.rotation);
         transPlayer?.Invoke(player2.transform);
         Debug.Log("Se mando el Segundo Player");
+        player2.GetComponent<PlayerID>().playerID = 2;
         mainCamera.SetActive(false);
     }
 }

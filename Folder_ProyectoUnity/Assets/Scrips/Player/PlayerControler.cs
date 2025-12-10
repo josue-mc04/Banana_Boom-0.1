@@ -49,9 +49,13 @@ public class PlayerControler : MonoBehaviour, IthrowAble
     [Header("Unity Event")]
     public UnityEvent OnDieEvent;
 
+    private int playerID;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        //obtener el ID desde PlayerID
+        playerID = GetComponent<PlayerID>().playerID;
     }
 
     private void Start()
@@ -192,16 +196,19 @@ public class PlayerControler : MonoBehaviour, IthrowAble
 
     private void Die()
     {
+        Debug.Log("GM instance -> " + GameManager.Instance);
+
         if (_deathEffect != null)
             Instantiate(_deathEffect, transform.position, Quaternion.identity);
 
-        // Desactivar cámara del jugador antes de morir
+        //desactivar camara del jugador antes de morir
         Camera cam = GetComponentInChildren<Camera>();
         if (cam != null)
             cam.gameObject.SetActive(false);
 
         OnDieEvent?.Invoke();
 
+        GameManager.Instance.PlayerDied(playerID);
         Destroy(gameObject);
     }
 
