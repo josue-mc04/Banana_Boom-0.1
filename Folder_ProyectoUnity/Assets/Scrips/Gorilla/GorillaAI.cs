@@ -74,7 +74,7 @@ public class GorillaAI : MonoBehaviour
             chasing = false;
         }
 
-        //Si no estamos persiguiendo, patrullar
+        //si no estamos persiguiendo, patrullar
         if (!chasing)
         {
             Patrol();
@@ -83,24 +83,47 @@ public class GorillaAI : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<IThrowAble>() != null)
+        //busca la interfaz IthrowAble en el objeto golpeado o en cualquiera de sus padres
+        IthrowAble throwable = collision.gameObject.GetComponentInParent<IthrowAble>();
+
+        if (throwable != null)
         {
-            collision.gameObject.GetComponent<IThrowAble>().Throw();
+            //llama al metodo Throw del player
+            throwable.Throw();
 
-            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 pushDir = (collision.transform.position - transform.position);
+            //intenta obtener el Rigidbody: primero usa collision.rigidbody (si existe),
+            //si no esta, busca en los padres (porque el Rigidbody suele estar en el root)
+            Rigidbody rb = collision.rigidbody ?? collision.gameObject.GetComponentInParent<Rigidbody>();
 
-            pushDir.y = 0;
-            pushDir = pushDir.normalized;
+            if (rb != null && !rb.isKinematic)
+            {
+                // Calcula direccion de empuje horizontal más un impulso vertical
+                Vector3 pushDir = (rb.transform.position - transform.position);
+                pushDir.y = 0;
+                pushDir = pushDir.normalized;
 
-            Vector3 finalDir = (pushDir + Vector3.up * 2f).normalized;
-            rb.AddForce(finalDir * pushForce, ForceMode.Impulse);
+                Vector3 finalDir = (pushDir + Vector3.up * 2f).normalized;
+
+                rb.AddForce(finalDir * pushForce, ForceMode.Impulse);
+
+                Debug.Log("Gorila empujo a: " + rb.gameObject.name);
+            }
+            else
+            {
+                Debug.LogWarning("Gorila: no encontre Rigidbody valido para empujar en " + collision.gameObject.name);
+            }
+        }
+        else
+        {
+            // Debug util para ver que esta chocando
+            Debug.Log("Gorila colisiono con (no lanzable): " + collision.gameObject.name);
         }
     }
 
+
     private void UpdateQueueSystem()
     {
-        //Revisar jugadores
+        //revisar jugadores
         for (int i = 0; i < allPlayers.Count; i++)
         {
             Transform jugador = allPlayers[i];
@@ -109,7 +132,7 @@ public class GorillaAI : MonoBehaviour
             {
                 float distancia = Vector3.Distance(transform.position, jugador.position);
 
-                //Si en caso esta cerca
+                //si en caso esta cerca
                 if (distancia < detectRange)
                 {
                     //evita duplicados
