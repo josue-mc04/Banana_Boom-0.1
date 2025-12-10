@@ -6,6 +6,7 @@ public class GestorEscena : MonoBehaviour
     private void OnEnable()
     {
         SceneEvents.OnJugar += CargarJuego;
+        SceneEvents.OnLobby += CargarLobby;
         SceneEvents.OnVolverMenu += CargarMenu;
         SceneEvents.OnPlayer1Win += CargarEscenaP1;
         SceneEvents.OnPlayer2Win += CargarEscenaP2;
@@ -14,6 +15,7 @@ public class GestorEscena : MonoBehaviour
     private void OnDisable()
     {
         SceneEvents.OnJugar -= CargarJuego;
+        SceneEvents.OnLobby -= CargarJuego;
         SceneEvents.OnVolverMenu -= CargarMenu;
         SceneEvents.OnPlayer1Win -= CargarEscenaP1;
         SceneEvents.OnPlayer2Win -= CargarEscenaP2;
@@ -22,6 +24,10 @@ public class GestorEscena : MonoBehaviour
     void CargarJuego()
     {
         SceneManager.LoadScene("GamePlay");
+    }
+    void CargarLobby()
+    {
+        SceneManager.LoadScene("Looby");
     }
     void CargarMenu()
     {

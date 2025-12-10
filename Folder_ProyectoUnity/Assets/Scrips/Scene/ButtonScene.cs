@@ -6,6 +6,7 @@ public class ButtonScene : MonoBehaviour
     {
         Jugar,
         MenuPrincipal,
+        Looby,
         Exit
     }
 
@@ -17,6 +18,10 @@ public class ButtonScene : MonoBehaviour
         {
             case TipoBoton.Jugar:
                 SceneEvents.Jugar();
+                break;
+
+            case TipoBoton.Looby:
+                SceneEvents.Lobby();
                 break;
 
             case TipoBoton.MenuPrincipal:
