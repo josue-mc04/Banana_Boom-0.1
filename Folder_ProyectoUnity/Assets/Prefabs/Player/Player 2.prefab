@@ -851,7 +851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 50
-  _deathEffect: {fileID: 0}
+  _deathEffect: {fileID: 5985634496115995773, guid: 463cf9f7af4680240898f6aeba3fe3e6, type: 3}
   hitEffect: {fileID: 0}
   _healthbar: {fileID: 3976309618532804748}
   speed: 8
